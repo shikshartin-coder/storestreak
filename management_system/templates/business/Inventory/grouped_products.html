@@ -1,0 +1,25 @@
+{% extends '../base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/inventory/groupbylist.css' %}">
+</head>
+<ul class="groupbylist_block">
+    {% for key,value in product_obj_dict.items %}
+    <li class="groupbylist_present">
+        <div class="groupbylist_present_detail">
+            <div class="groupbylist_present_detail_img">
+                <img src="../../../static/images/heroslide2.png">
+            </div>
+            <div class="groupbylist_present_detail_info">
+                <h3><a href="{% url 'inventory_edit' product_id=key.id %}"> {{key.name}}</a></h3>
+                <p class="total">
+                    <span class="total">Total items:</span>
+                    <span class="items"> {{value}}</span>
+                </p>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

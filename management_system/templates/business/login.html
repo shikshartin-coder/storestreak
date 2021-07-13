@@ -1,0 +1,43 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+
+    <title>LOGIN</title>
+</head>
+
+<body>
+    <div class="customer-login">
+        <div class="customer_login_1">
+            <img src="{% static './images/1.png' %}">
+            <h2>LOG IN</h2>
+            <p> </p>
+        </div>
+        <div class="customer_login_2">
+            <form action="{% url 'business-login' %}" method="POST">
+                {% csrf_token %} {% if error != None %}
+                <p>{{error}}</p>
+                {% endif %}
+                <input required type="number" name="username" class="username" placeholder="Phone Number" value="{{username}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                <input required type="password" name="password" class="password" placeholder="Password">
+                <div class="customer_login_3">
+                    <span><a href="{% url 'forgot-password' %}">Forgot Password ?</a> </span>
+                </div>
+
+                <button type="submit" name="btn" value="login_submit" class="submit_button">SUBMIT</button>
+            </form>
+            <p class="or">OR</p>
+            <div class="customer_login_4">
+                <a href="{% url 'contact' %}"> <button>SignUp</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

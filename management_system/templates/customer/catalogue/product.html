@@ -1,0 +1,152 @@
+{% extends '../base.html' %} {% block content %} {% load static %}
+
+<head>
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/base/modal.css' %}">
+
+     <link rel="stylesheet" type="text/css" href="{% static './css/customer/catalogue/product_page.css' %}">
+    <title>Catalogue</title>
+</head>
+
+<body>
+
+    <div class="productpage">
+        <div class="productpage_img">
+            <div class="productpage_img_div">
+                <img src="../../{{product_type.image}}">
+            </div>
+        </div>
+        <div class="productpage_text">
+
+            <div class="productpage_text_seller">
+                <a href=""><span class="seller">{{business_obj.Business_name |title}}</span></a> <span class="category">, {{category.name}}</span>
+            </div>
+
+            <div class="productpage_text_name">
+                <h3>{{ product_type.name |title }}</h3>
+            </div>
+
+
+            <div class="productpage_text_packsize">
+                <span class="packname">Pack Size: </span><span class="packsize">{{product_type.pack_size}} {{product_type.unit}}</span>
+            </div>
+
+            <div class="productpage_text_mrp">
+                <span class="mrp">MRP:</span><strike><span>&#8377;</span><span class="cutprice">52,900</span></strike>
+            </div>
+            <div class="productpage_text_price">
+
+                <span>&#8377;</span>
+                <span class="price">{{product_type.cost}}</span>
+            </div>
+
+            <div class="productpage_text_detail">
+                <p>{{product_type.content}} </p>
+            </div>
+
+            <form action="{% url 'confirm_order' %}" method="GET">
+                {% if message != None %} {{message}} {% endif %} {% if max_qty_val == 0 %}
+
+                <button class="out_of_stock" type="button">Out of Stock</button>
+
+                {% else %}
+                <div class="select_class">
+                    <select name="quantity" class="quantity_change" id="quantity">
+                        {% for qty in qty_list %}
+                        {% if qty == selected_qty_val %}
+                            <option value="{{qty}}" selected>{{qty}}</option>
+                        {% else %}
+                            <option value="{{qty}}">{{qty}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="productpage_text_buttons">
+                    <input type="hidden" name="buy_mode" value="normal_buy"> {% if request.user.id == None %}
+                    <button name="btn" type="button" value="buy" class="buynow" onclick="show('non_user_modal');set_button_val('submit_btn','buy_now')">Buy Now</button>
+                    <button type="button" value="buy" class="add_to_cart_product" onclick="show('non_user_modal');set_button_val('submit_btn','cart')">Add To Cart</button> {% else %}
+                    <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+                    <input type="hidden" name="product_type_id" value="{{product_type.id}}">
+                    <button name="btn" type="submit" value="buy" class="buynow">Buy Now</button>
+                    <button type="button" value="buy" class="add_to_cart_product" onclick="set_value('quantity_cart','quantity');submit_form_by_id('cart_form')">Add To Cart</button> {% endif %}
+                </div>
+                {% endif %}
+
+
+            </form>
+
+            <form action="{% url  'cart' business_key=business_obj.business_key %}" id='cart_form' method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="business_id" value="{{business_obj.id}}">
+                <input type="hidden" name="product_type_id" value="{{product_type.id}}">
+                <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+                <input type="hidden" name="product_key" value="{{product_type.product_type_key}}">
+                <input type="hidden" name="quantity" id="quantity_cart">
+                <input name="btn" type="hidden" value="add_cart_product_page">
+            </form>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Modal -->
+    <div class="mobile_form">
+        <!-- Modal content -->
+        <div id="non_user_modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal_close" onclick="hide('non_user_modal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <h3>Please Verify Your Mobile Number To Proceed.</h3>
+                    <form action="{% url 'inside_signup' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="business_key" value="{{business_key}}">
+                        <input type="hidden" name="product_key" value="{{product_type.product_type_key}}">
+                        <input type="text" placeholder="Mobile Number" name="mobile_number">
+                        <button type="submit" name="btn" id="submit_btn">Verify</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hide(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+        function show(id) {
+            console.log("Why Not working");
+            console.log(document.getElementById(id));
+            document.getElementById(id).style.display = "block";
+        }
+
+        function set_button_val(id, btn_val) {
+            document.getElementById(id).value = btn_val;
+            //console.log(document.getElementById(id));
+        }
+
+        function set_value(id_to_set, id_to_fetch) {
+            document.getElementById(id_to_set).value = document.getElementById(id_to_fetch).value;
+        }
+
+        function submit_form_by_id(id) {
+            document.getElementById(id).submit();
+        }
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+{% endblock %}

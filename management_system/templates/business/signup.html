@@ -1,0 +1,140 @@
+ 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Documents</title>
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/auth/business_signup.css' %}">
+	<script src="{% static './js/password_validation.js' %}" defer=true></script>
+</head>
+<body>
+ 
+    <div class="signup_form_business">
+		
+		 <form name="business-signup_form" action="{% url 'business-signup' %}" method="POST" > 
+		 	{% csrf_token %}
+			<div id="tab1">
+				<input type="hidden" name="mobile_number" value="{{mobile_number}}">
+				<h3>Enter Business Details</h3>
+				<input type="text" placeholder="Business Name" name="business_name" oninput="removing_message_business()">
+				<div id="business_name_message"></div>
+				<div class="category_select_div">
+				<select placeholder="Category" name="business_category" class="category_select" oninput="removing_message_category()">
+					{% for category in category_list %}
+						<option value="{{category}}">{{category}}</option>
+					{% endfor %}
+				</select>
+				</div>
+					<div id="category_message"></div>
+				<div class="button-box">
+					<button type="button" id="next1">Next</button>
+				</div>
+			</div>
+
+			<div id="tab2">
+					<h3>Create Password </h3>
+				
+				<div id="message"></div>
+				<input type="Password" oninput="password_validation();"  placeholder="Password" name="password" id="password" required>
+				
+				<input type="Password"  placeholder="Confirm Password" name="cpassword"  id ="cpassword"
+				 oninput= "password_matching('password','cpassword','signup_submit','message')" required>
+			
+				<div class="button-box">
+					<input type="hidden" name="password_mode" value="signup">
+					
+					<button type="submit" id="signup_submit">Finish</button>
+				</div>
+			</div>
+
+			
+			<div class="step-row">
+				<div id="progress"></div>
+				<div class="step-col"></div>
+				<div class="step-col"></div>				
+			</div>
+
+			<div class="registration_information">
+			<img src="{% static './images/1.png' %}">
+			</div>
+
+		</form>
+	</div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+	<script  type="text/javascript">
+		function password_validation() {
+		$.post(
+		'/business-signup/{{mobile_number}}',{
+		password_mode:	'validation',
+		csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+		password: $('input[name="password"]').val(),
+		},
+		function (data) {
+		document.getElementById('message').innerHTML = data;
+		});
+		}
+	</script>
+
+<script type="text/javascript">
+	var tab1=document.getElementById("tab1");
+	var tab2=document.getElementById("tab2");	
+	var next1=document.getElementById("next1");
+	var next2 = document.getElementById("signup_submit");		
+	var progress = document.getElementById("progress");
+
+	next1.onclick= function(){			
+			var x = document.forms["business-signup_form"]["business_name"].value;
+			var y= document.forms["business-signup_form"]["business_category"].value;
+ 		 	if (x == "") {
+    		document.getElementById('business_name_message').innerHTML = ('Business Name must be filled out');
+				}
+				else{
+					if (y == "") {
+						document.getElementById('category_message').innerHTML = ('Category Name must be filled out');
+					}
+					else{
+					tab1.style.left="-400px";
+					tab2.style.left="0px";
+					progress.style.width="400px";
+					}
+				}
+}	
+	function removing_message_business(){
+		document.getElementById('business_name_message').style.display = "none";
+	}
+	function removing_message_category(){
+		document.getElementById('category_message').style.display = "none";
+	}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script  type="text/javascript">
+function password_validation() {
+$.post(
+'/business-signup',{
+password_mode:	'validation',
+csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+password: $('input[name="password"]').val(),
+},
+function (data) {
+	document.getElementById('message').innerHTML = data.error;
+	if(data.error == "") {
+		console.log("No error");
+	}
+	else {
+		let signup_submit_container = document.getElementById('signup_submit');
+		signup_submit_container.disabled = true;
+		signup_submit_container.style.opacity ="0.4";
+	}
+}
+);
+
+}
+</script>
+
+</body>
+</html>

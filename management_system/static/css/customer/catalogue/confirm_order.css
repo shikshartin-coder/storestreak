@@ -1,0 +1,418 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.test {
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+}
+
+.confirmorder {
+    width: 80%;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+
+/*--------------------------heading--------------*/
+
+.confirmorder_heading .heading h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 400;
+    width: 100%;
+    padding: 20px 0px 10px 0px;
+}
+
+
+/*--------------------proceed to buy---------------*/
+
+.confirmorder_proceedtobuy {
+    padding: 0rem 1rem;
+    display: flex;
+    width: 100%;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+}
+
+.proceedtobuy_text,
+.proceedtobuy_button {
+    width: 50%;
+}
+
+.proceedtobuy_text {
+    margin: auto;
+    text-align: left;
+}
+
+.proceedtobuy_button {
+    text-align: right;
+    margin: 1.4rem auto;
+    font-size: 1rem;
+}
+
+.proceedtobuy_button svg {
+    font-size: 0.9rem;
+    margin: auto;
+    line-height: 2rem;
+    padding-top: 5px;
+}
+
+#order_details_tab {
+    display: none;
+}
+
+.confirmorder_proceedtobuy button {
+    font-size: 16px;
+    width: 35%;
+    height: 35px;
+    border-radius: 5px;
+    border: 0;
+    color: #222;
+    background-color: #fff;
+    outline: none;
+}
+
+.orderdetails_shipping {
+    border: 1px solid #d9d9d9;
+}
+
+.orderdetails_shipping_head {
+    background: linear-gradient(to bottom, #f8f8f8, #eee);
+    padding: 10px 0px 10px 10px;
+}
+
+.orderdetails_shipping_head h3 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.orderdetails_shipping_address {
+    padding: 20px 20px;
+}
+
+.orderdetails_shipping_name h4,
+.orderdetails_shipping_address_detail h4 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.orderdetails_lines {
+    margin: 20px 0px;
+    border: 1px solid #d9d9d9;
+}
+
+.orderdetails_lines_heading {
+    background: linear-gradient(to bottom, #f8f8f8, #eee);
+    padding: 10px 0px 10px 10px;
+}
+
+.orderdetails_lines_heading h3 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.orderdetails_lines ul {
+    margin: 0;
+}
+
+.orderdetails_lines_card {
+    width: 96%;
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid #d9d9d9;
+    margin: 10px auto;
+    padding: 1rem 0px;
+}
+
+.orderdetails_lines_card_img {
+    width: 70px;
+    height: 70px;
+}
+
+.sub_pro {
+    font-size: 0.8rem;
+    color: #333;
+    line-height: 0.8rem;
+    margin: 5px 0px;
+}
+
+.orderdetails_lines_card_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.orderdetails_lines_card_quantity {
+    width: 60%;
+    display: flex;
+}
+
+.product_name_div {
+    padding: 0px 0px 0px 20px;
+}
+
+.product_name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0px;
+    line-height: 1.2rem;
+}
+
+.orderdetails_lines_card_quantity_name {
+    font-size: 1rem;
+    margin: 0px;
+    line-height: 1.3rem;
+}
+
+.orderdetails_lines_card_quantity_details {
+    font-size: 18px;
+    padding: 10px 0px;
+    text-align: right;
+    display: inline-flex;
+}
+
+.orderdetails_lines_card_unitprice {
+    padding: 10px 0px;
+    font-size: 18px;
+}
+
+.orderdetails_lines_card_amount {
+    width: 40%;
+    text-align: right;
+}
+
+.orderdetails_lines_card_amount select {
+    display: inline;
+}
+
+select {
+    font-size: 14px;
+    width: auto;
+    padding: 1px 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
+    outline: none;
+}
+
+.item_total {
+    width: 96%;
+    margin: 10px auto;
+    display: flex;
+}
+
+.item_total_label {
+    width: 71.5%;
+    display: block;
+}
+
+.grand_total_head {
+    margin: 2rem 0px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.total_amount {
+    margin: 2rem 0px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.item_cost {
+    width: 28.5%;
+    display: block;
+    text-align: right;
+}
+
+.item_summary {
+    padding: 30px 0px;
+}
+
+
+/*--------------------addressss---------------*/
+
+.confirmorder_address {
+    padding: 20px 0px;
+}
+
+.confirmorder_address .address_label {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 400;
+    width: 100%;
+    padding: 20px 0px 10px 0px;
+}
+
+.add_new_address {
+    display: none;
+}
+
+.address_list {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.address_present,
+.select_other_address {
+    width: 49%;
+    padding: 10px 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin: 15px 0px;
+}
+
+.placeorder_address {
+    width: 100%;
+    padding: 0px;
+    margin: 1rem auto;
+    font-size: 1rem;
+    font-weight: 500;
+	height: 40px;
+	background-color: #146eb4;
+	border-radius: 5px;
+	color: #fff;
+	border:0;
+	outline: none;
+}
+
+#address_form {
+    width: 49%;
+}
+
+.address_present p {
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+}
+
+.address_present_detail .name {
+    font-weight: 700;
+}
+
+.address_buttons {
+    padding: 10px 0px;
+    margin: auto;
+    text-align: center;
+}
+
+.confirmorder_final_button {
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.confirmorder_final_button .confirm {
+    font-size: 20px;
+    width: 40%;
+    padding: 5px 10px;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+}
+
+.select_other_address {
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    height: 88%;
+}
+
+.select_other_address h1 {
+    font-weight: 400;
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .confirmorder {
+        width: 95%;
+        margin: auto;
+        margin-top: 2rem;
+    }
+    .select_other_address {
+        width: 100%;
+    }
+    #address_form {
+        width: 100%;
+    }
+    .select_other_address h1 {
+        font-size: 1rem;
+        font-weight: 500;
+        width: 100%;
+    }
+    .add_new_address {
+        display: block;
+    }
+    .confirmorder_heading .heading h1 {
+        padding-bottom: 10px;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 1.2;
+        margin: 0;
+    }
+    .confirmorder_proceedtobuy {
+        padding: 5px;
+    }
+    .confirmorder_proceedtobuy p {
+        font-size: 0.8rem;
+        margin: 5px 0px;
+    }
+    .proceedtobuy_text,
+    .proceedtobuy_button {
+        width: 98%;
+        margin: 5px;
+    }
+    .confirmorder_proceedtobuy button {
+        font-size: 0.8rem;
+        width: 100%;
+        text-align: right;
+        margin: 5px 0px;
+    }
+    .confirmorder_address .address_label {
+        font-size: 1.3rem;
+        line-height: 1.2rem;
+        font-weight: 400;
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 1rem;
+    }
+    .address_list {
+        display: block;
+    }
+    .address_present,
+    .select_other_address {
+        width: 100%;
+        padding: 10px 10px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin: 15px 0px;
+    }
+    .address_present p,
+    .select_other_address p {
+        font-size: 0.8rem !important;
+        margin: 0.2rem;
+        font-weight: 500;
+    }
+    .placeorder_address {
+        width: 100%;
+        padding: 5px;
+        margin: 0.5rem auto;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}

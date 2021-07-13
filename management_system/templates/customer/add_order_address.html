@@ -1,0 +1,71 @@
+{% extends './base.html' %} {% block content %} {% load static %} {% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/address/newaddress.css' %}">
+
+</head>
+
+<body>
+
+    <div class="new_address">
+        <div class="new_address_heading">
+            <h3>Add New Address</h3>
+        </div>
+        <form class="new_address_body" action="{% url 'confirm_order'  %}" method="GET">
+            <input type="hidden" name="quantity" id="quantity" value="{{quantity}}">
+            <input type="hidden" name="product_type_id" value="{{product_obj.id}}">
+            <input type="hidden" name="buy_mode" value="{{buy_mode}}">
+            <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+            <label>Name<span class="star"> *</span></label>
+            <input type="text" name="name" placeholder="name" value="{{address.name}}">
+            <label>Mobile Number<span class="star"> *</span></label>
+            <input type="number" name="mobile" placeholder="mobile" value="{{address.mobile}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            <label>Pin Code<span class="star"> *</span></label>
+            <input type="number" name="pincode" placeholder="pincode" value="{{address.pincode}}">
+            <label>Building<span class="star"> *</span></label>
+            <input type="text" name="building" placeholder="building" value="{{address.building}}">
+            <label>Street<span class="star"> *</span></label>
+            <input type="text" name="street" placeholder="street" value="{{address.street}}">
+            <label>Landmark</label>
+            <input type="text" name="landmark" placeholder="landmark" value="{{address.landmark}}">
+            <label>City<span class="star"> *</span></label>
+            <input type="text" name="city" placeholder="city" value="{{address.city}}">
+             <label>State<span class="star"> *</span></label>
+            <select name="state" id="">
+                    {% for state in state_list %}
+                <option value="{{state}}">{{state}}</option>
+                    {% endfor %}
+
+                </select>
+            <label>Type<span class="star"> *</span></label>
+            <select name="address_type" id="">
+                    {% for address_type in address_type_list %}
+                    <option value="{{address_type}}">{{address_type}}</option>
+                    {%  endfor %}
+                    {% if id != 'new' %}
+                    <option selected value="{{address.address_type}}">{{address.address_type}}</option>
+                    {% endif %}
+                </select>
+            <button type="submit" name="btn" value="new_order_address" id="submit_btn">New</button>
+        </form>
+        <div class="new_address_button">
+            <button onclick="clickSubmitButton(event)">Add Address</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    function clickSubmitButton(e) {
+        present_container = e.currentTarget;
+        parent_container = present_container.parentNode;
+        let submit_btn = document.getElementById("submit_btn");
+        submit_btn.click();
+    }
+</script>
+
+</html>
+{% endblock %}

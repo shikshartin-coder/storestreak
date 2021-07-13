@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static './css/landing_website/ss.css' %}">
+</head>
+<body>
+
+
+<h3>Total Subscribers : {{total_count}}</h3>
+<div class="subscribers_list">
+    {% for subscriber in subscribers_list %}
+        <div class="sub">
+            <div class="sub_img">
+                <div class="sub_img_div">
+                    <img src="{% static './images/default_image.png' %}">
+                </div>
+            </div>
+            <div class="sub_text">
+                <h3>{{subscriber.name}}</h3>
+                {% if subscriber.mobile %}
+                    <span>{{subscriber.mobile}}</span>
+                {% endif %}
+            </div>
+            <div class="sub_date">
+                <span>{{subscriber.timestamp|date:"M d, Y"}}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

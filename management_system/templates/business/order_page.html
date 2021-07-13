@@ -1,0 +1,244 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static './css/Business/order_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/base/modal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/ordercard.css' %}">
+</head>
+
+
+<body>
+    <div class="orderdetails">
+        <div class="orderdetails_top_head">
+                    <h3>Order Details</h3>
+                </div>
+        <div class="orderdetails_top">
+
+            <div class="orderdetails_top_left">
+
+                <div class="orderdetails_top_misc">
+                    <div class="order_details_left">
+                        <p>Buyer Name :</p>
+                        <p class="order_no_name">Order Number :</p>
+                        <p class="date_name">Ordered On : </p>
+                        <p class="order_amount">Total :</p>
+                        <p class="pay_mode">Payment Mode :</p>
+                    </div>
+                    <div class="order_details_right">
+                        <p> {{customer_obj.name | title}}</p>
+                        <p class="ordernumber">#{{order.order_id}}</p>
+                        <p class="date"> {{order.timestamp}}</p>
+                        <p class="amount">Rs. {{order.total_order_amount}}</p>
+                        <p class="pay_mode_value">{{order.payment_mode}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orderdetails_top_right">
+                <form id="status_change" action="{% url 'order_page' order_id=order.order_id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="btn" value="change_status"> {% if page == 'new' %}
+                    <button type="button" onclick="show('accepted')"style="background-color:#4CAF50;color:#fff;">Accept</button>
+                    <button type="button" onclick="show('rejected')"style="background-color:#F44336;color:#fff;">Rejected</button>
+
+                    <!-- Modal content -->
+                    <div class="mobile_form">
+                        <div id="accepted" class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="modal_close" onclick="hide('accepted')">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you Sure You want to accept this order.</p>
+                                    <button type="submit" name="btn" value="accepted">Accepted</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile_form">
+                        <!-- Modal content -->
+                        <div id="rejected" class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="modal_close" onclick="hide('rejected')">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Please Justify the reason for rejecting the order.</p>
+                                    <textarea name="reject_reason" id="" cols="30" rows="10"></textarea>
+                                    <button type="submit" name="btn" value="rejected">Rejected</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} {% if page == 'rejected' %}
+                    <p>Rejected</p>
+                    {% endif %} {% if page == 'accepted' %}
+                    <script>
+                        function status_show(elem, ids) {
+                            if (elem != '') {
+                                document.getElementById(ids).style.display = 'block';
+                                document.getElementById('status_span').innerHTML = elem;
+                                document.getElementById('status_input').value = elem;
+                            }
+                        }
+
+                        function status_hide(ids) {
+                            document.getElementById(ids).style.display = 'none';
+                        }
+                    </script>
+                    <select oninput="status_show(value,'status_modal')" class="status_order" name="order_status" id="status_change">
+            <option selected value="">{{active_status_value}}</option>
+            {% for key,values in order_status.items %}
+            {% if active_status_value != values %}
+            <option value="{{values}}">{{values}}</option>
+            {% endif %}
+            {% endfor %}
+          </select> {% if otp_error %}
+                    <span>OTP DOES NOT MATCH</span> {% endif %}
+                    <button type="button" onclick="show('Delivered')" style="background-color:#4CAF50;color:#fff;">Delivered</button>
+                    <!-- Modal content -->
+                    <div class="mobile_form">
+                        <div id="Delivered" class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="modal_close" onclick="hide('Delivered')">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Please ask the customer to provide Order code to complete this order.</p>
+                                    <input type="number" name="order_otp" placeholder="OTP">
+                                    <button type="submit" name="btn" value="Delivered">Delivered</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal content -->
+                    <div class="mobile_form">
+                        <div id="status_modal" class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="modal_close" onclick="status_hide('status_modal')">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want to change status to <span id="status_span"></span></p>
+                                    <input type="hidden" name="order_status" id="status_input">
+                                    <button type="submit" name="btn" value="change_status_btn">Yes</button>
+                                    <button type="submit" onclick="status_hide('status_modal')" name="btn" value="change_status_btn">No</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %} {% if page == 'delivered' %}
+                    <p>Delievered</p>
+                    {% endif %}
+
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="card_content">
+            <div class="card_head">
+                <p>Track Your Package</p>
+            </div>
+            <div class="timeline card_body">
+                <ul class="sessions">
+                    {% for timeline in status_timeline %}
+                    <li>
+                        <div class="time">{{timeline.status}} - <span class="dtae_time">{{timeline.timestamp}}</span></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card_content">
+            <div class="card_head">
+                <p>Shipping Address</p>
+            </div>
+            <div class="card_body">
+                <div class="orderdetails_shipping_address_detail">
+                    <p class="name">{{address_obj.name | title}}, {{address_obj.mobile}},</p>
+                    <p class="building"> <span> {{address_obj.building}}, </span> <span>{{address_obj.street}},</span></p>
+                    <p class="area"> <span>{{address_obj.city}}, </span><span>{{address_obj.state}},</span> <span>{{address_obj.pincode}}</span></p>
+                    <p class="landmark"><span>India</span></p>
+                    <p><span>{{address_obj.landmark}}, {{address_obj.address_type}}</span></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card_content">
+            <div class="card_head">
+                {% if total_items == 1 %}
+                <p><span class="">{{total_items}} </span>Item</p>
+                {% else %}
+                <p><span class="">{{total_items}} </span>Items</p>
+                {% endif %}
+            </div>
+            <ul class="card_body product_details">
+                {% for order_product in product_order %} {% for product in products_list %}{% if product.id == order_product.product_type_id %}
+                <a href="{% url 'product' business_key=business_obj.business_key product_key=product.product_type_key %}">
+                    <li>
+                        <div class="order_component">
+                            <div class="image_component">
+                                <img src="../../{{product.image}}">
+                            </div>
+                            <div class="name_component">
+                                <div class="order_card_text_header">
+
+                                    <p class="order_card_business_name"> <span> {{product.name | title}}</span> <span class="total_cost">Rs. {{order_product.total_price}}</span> </p>
+                                    <span class="order_card_business_subname">{{business.category | title}}</span><span class="items">ITEMS : {{order_product.quantity}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+                {% endif %} {% endfor %} {% endfor %}
+            </ul>
+            <div class="orderdetails_summary">
+                <div class="orderdetails_summary_head">
+                    <h3>Order Summary</h3>
+                </div>
+                <div class="orderdetails_summary_body">
+
+                    <div class="orderdetails_summary_body_row">
+                        <span class="rowname">Item(s) Subtotal:</span>
+                        <span class="rowvalue">Rs {{total_cost}}</span>
+                    </div>
+
+                    <div class="orderdetails_summary_body_row">
+                        <span class="rowname">Delivery</span>
+                        <span class="rowvalue">Rs {{order.delivery_charge}}</span>
+                    </div>
+
+                    <div class="orderdetails_summary_body_row grand">
+                        <span class="rowname"> Grand Total</span>
+                        <span class="rowvalue big">Rs {{order.total_order_amount}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <script src="{% static './js/modal.js' %}"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

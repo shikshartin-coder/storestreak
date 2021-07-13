@@ -1,0 +1,178 @@
+.order_page {
+    width: 80%;
+    margin: auto;
+}
+
+.order_card {
+    width: 100%;
+    margin: auto;
+}
+
+.orderlist_top {
+    display: flex;
+}
+
+.orderlist_top_head {
+    width: 60%;
+}
+
+.orderlist_top_filter {
+    width: 40%;
+    margin: 1rem 1rem;
+    text-align: right;
+    float: right;
+}
+.filter{
+    font-size: 16px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 10px 0px 30px 0px;
+    border: 1px solid #d9d9d9;
+    width: 60%;
+    color: #1a181e;
+}
+.order_card li {
+    border-radius: 10px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    width: 100%;
+    list-style: none;
+    margin: 1rem 0rem;
+}
+
+.order_card li a {
+    width: 100%;
+    margin: auto;
+    text-decoration: none;
+}
+
+.order_card_img {
+    width: 10%;
+}
+
+.order_component {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0.5rem 1rem;
+}
+
+.image_component {
+    width: 8%;
+    margin-top: 0.8rem;
+}
+
+.image_component img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10%;
+}
+
+.name_component {
+    width: 92%;
+    padding: 0px 0rem;
+}
+
+.order_card_business_name {
+    margin-bottom: 0.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.order_card_business_subname {
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.total_cost {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    float: right;
+}
+
+.order_status {
+    margin: 0px;
+    font-size: 0.7rem;
+    color: #666;
+    float: right;
+}
+
+.order_date {
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.items {
+    font-size: 0.8rem;
+    text-align: right;
+    color: #666;
+    float: right;
+    margin-top: 0.4rem;
+}
+
+.time_status {
+    padding: 0rem 1rem 0.2rem 1rem;
+}
+
+@media only screen and ( max-width: 800px) {
+    .order_page {
+        width: 95%;
+        margin: auto;
+    }
+    .orderlist_top_head {
+    width: 40%;
+}
+.orderlist_top_head h1{
+    margin :0px;
+}
+.filter{
+    font-size: 16px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 0px 0px 0px 0px;
+    border: 1px solid #d9d9d9;
+    width: 60%;
+    color: #1a181e;
+}
+
+.orderlist_top_filter {
+    width: 60%;
+    margin: 0rem 1rem;
+    text-align: right;
+    float: right;
+}
+
+    .image_component img {
+        width: 2rem;
+        height: 2rem;
+    }
+    .name_component {
+        width: 92%;
+        padding: 0px 0rem 0rem 1rem;
+    }
+    .order_card_business_name {
+        margin-bottom: 0rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #333;
+    }
+    .order_date {
+        font-size: 0.6rem;
+        color: #666;
+    }
+    .total_cost {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #333;
+        float: right;
+    }
+    .items {
+        font-size: 0.7rem;
+        text-align: right;
+        color: #666;
+        float: right;
+        margin-top: 0.4rem;
+    }
+}

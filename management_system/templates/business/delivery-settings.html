@@ -1,0 +1,87 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './css/Business/settings.css' %}">
+</head>
+
+<body>
+    <form id="delivery_form" action="{% url 'delivery_settings' %}" method="GET">
+        <ul class="settings">
+            <li>
+                <p>
+                    <span class="deliverytext">Free Delivery</span>
+                    <span class="setting_icon">
+                        {% if delivery == 'free' %}
+                        <input  checked="checked" class="radio" type="radio" name="delivery" value="free" >
+                        {% else %}
+                        <input  class="radio" type="radio" name="delivery" value="free" >
+                        {% endif %}
+                    </span>
+                </p>
+
+            </li>
+            <li>
+
+                <p>
+                    <span class="deliverytext">Fixed Delivery</span><span class="setting_icon">
+                        {% if delivery == 'fixed' %}
+                        <input  checked="checked" class="radio" type="radio" name="delivery" value="fixed">
+                        {% else %}
+                        <input  class="radio" type="radio" name="delivery" value="fixed">
+                        {% endif %}
+                    </span>
+
+                </p>
+
+                <p>
+                    <label for="">Delivery Amount : </label> {% if delivery == 'fixed' %}
+                    <input type="number" class="setting_input" id="Delivery Charge" name="delivery_charge" value="{{delivery_charge}}"> {% else %}
+                    <input type="number" id="Delivery Charge" class="setting_input"  name="delivery_charge"> {% endif %}
+                </p>
+
+
+            </li>
+            <li>
+
+                <p>
+                    <span class="deliverytext">Custom Delivery</span><span class="setting_icon">
+                        {% if delivery == 'custom' %}
+                        <input class="radio" checked="checked" type="radio" name="delivery" value="custom" >
+                        {% else %}
+                        <input class="radio" type="radio" name="delivery" value="custom" >
+                        {% endif %}
+                    </span>
+
+                </p>
+                {% if delivery == 'custom' %}
+                <p>
+                    <label for="">Delivery Amount : </label>
+                    <input type="number" id="Delivery Charge" class="setting_input" name="delivery_charge1" value="{{delivery_charge}}">
+                </p>
+                <p>
+                    <label for="Delivery Charge">Set minimum Order Value for delivery : </label>
+                    <input type="number" id=" Charge" name="minimum_charge" class="setting_input" value="{{minimum_amount}}">
+
+                </p>
+                {% else %}
+                <p>
+                    <label for="">Delivery Amount : </label>
+                    <input type="number" id="Delivery Charge" name="delivery_charge1">
+                </p>
+                <p>
+                    <label for="Delivery Charge">Set minimum Order Value for delivery : </label>
+                    <input type="number" id=" Charge" class="setting_input" name="minimum_charge">
+
+                </p>
+                {% endif %}
+
+            </li>
+            <div class="button_class"><button type="submit">Save Changes</button></div>
+
+        </ul>
+
+    </form>
+
+</body>
+{% endblock %}

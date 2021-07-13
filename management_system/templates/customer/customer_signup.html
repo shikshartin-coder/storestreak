@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <title>Documents</title>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_signup.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+
+    <script src="{% static './js/password_validation.js' %}" defer=true></script>
+</head>
+
+<body>
+
+    <div class="signup_form_customer">
+
+        {% if page == 'inside' %}
+        <form name="customer-signup_form" action="{% url 'inside_signup' %}" method="POST">
+            {% else %}
+            <form name="customer-signup_form" action="{% url 'customer-signup' %}" method="POST">
+                {% endif %} {% csrf_token %}
+                <!-----------------------------Information tab------------------------------------->
+                <div id="tab1">
+                    <h3>Enter Personal Information</h3>
+                    <input type="hidden" name="mobile_number" value="{{mobile_number}}">
+                    <input type="text" placeholder="Personal Name" name="customer_name" oninput="removing_name_message()" required> {% if page == 'inside' %}
+                    <input type="hidden" name="business_key" value="{{business_key}}">
+                    <input type="hidden" name="product_key" value="{{product_key}}">
+                    <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
+                    <div id="customer_name_message"></div>
+
+                    <div class="button-box">
+                        <button type="button" id="next1">Next</button>
+                    </div>
+                </div>
+
+                <!-----------------------------password tab------------------------------------->
+
+                <div id="tab2">
+                    <h3>Create Password</h3>
+                    <div id="message"></div>
+                    <input type="Password" oninput="password_validation();" placeholder="Password" name="password" id="password" required>
+                    <input type="Password" placeholder="Confirm Password" name="cpassword" id="cpassword" oninput="password_matching('password','cpassword','signup_submit','message')" required>
+
+                    <div class="button-box">
+                        <input type="hidden" name="password_mode" value="signup">
+                        <button type="submit" id="signup_submit">Finish</button>
+                    </div>
+                </div>
+
+
+
+                <div class="step-row">
+                    <div id="progress"></div>
+                    <div class="step-col"></div>
+                    <div class="step-col"></div>
+                </div>
+
+                <div class="registration_information">
+                    <img src="{% static './images/1.png' %}">
+                </div>
+
+
+            </form>
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript">
+        var tab1 = document.getElementById("tab1");
+        var tab2 = document.getElementById("tab2");
+        var next1 = document.getElementById("next1");
+        var next2 = document.getElementById("signup_submit");
+        var progress = document.getElementById("progress");
+
+        next1.onclick = function() {
+            var x = document.forms["customer-signup_form"]["customer_name"].value;
+            if (x == "") {
+                document.getElementById('customer_name_message').innerHTML = ('Personal Name must be filled out');
+            } else {
+                tab1.style.left = "-400px";
+                tab2.style.left = "0px";
+                progress.style.width = "400px";
+            }
+        }
+        next2.onclick = function() {
+            tab2.style.left = "-400px";
+            progress.style.width = "400px";
+        }
+
+        function removing_name_message() {
+            document.getElementById('customer_name_message').style.display = "none";
+        }
+
+        function removing_address_message() {
+            document.getElementById('address_message').style.display = "none";
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+        function password_validation() {
+            $.post(
+                '/customer-signup', {
+                    password_mode: 'validation',
+                    csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+                    password: $('input[name="password"]').val(),
+                },
+                function(data) {
+                    document.getElementById('message').innerHTML = data.error;
+                    if (data.error == "") {
+                        console.log("No error");
+                    } else {
+                        let signup_submit_container = document.getElementById('signup_submit');
+                        signup_submit_container.disabled = true;
+                        signup_submit_container.style.opacity = "0.4";
+                    }
+                }
+            );
+
+        }
+    </script>
+
+</body>

@@ -1,0 +1,77 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/contact.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contactus">
+        <div class="contactus_head">
+        </div>
+        <div class="contactus_body">
+            <div class="contactus_body_innerdiv">
+                <div class="contactus_body_heading">
+                    <h3>Contact Us</h3>
+                    <p>Need of a E-store ? Please fill out the form below.</p>
+                    <p>Our team is happy to answer your questions. Fill out the form and we’ll be in touch as soon as possible.</p>
+                </div>
+                <form class="contactform">
+                    <div class="contactformblock">
+                        <label>First Name</label>
+                        <input type="text" name="" required placeholder="Enter your Name...">
+                    </div>
+                    <div class="contactformblock">
+                        <label>Last Name</label>
+                        <input type="text" required name="" placeholder="Enter your Last Name...">
+                    </div>
+                    <div class="contactformblock">
+                        <label>E-mail</label>
+                        <input type="email" required name="" placeholder="Enter your Email...">
+                    </div>
+                    <div class="contactformblock">
+                        <label>Subject</label>
+                        <input type="text" required name="" placeholder="Subject">
+                    </div>
+                    <div class="contactformblock_message">
+                        <label>Message</label>
+                        <textarea name="message" required placeholder="Enter your message" maxlength="1000" rows="4"></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="contactus_body_footer">
+            <div class="contactus_body_footer_address">
+                <h3>Registered address</h3>
+                <p>270/1 darik jungle road,bhadrakali</p>
+                <p>hooghly hindmotor-712232 est Bengal</p>
+            </div>
+            <div class="contactus_body_footer_email">
+                <h3>Email support</h3>
+                <a href="#">dukan@support</a>
+            </div>
+            <div class="contactus_body_footer_phone">
+                <h3>Contact number</h3>
+                <p>+9876543210</p>
+            </div>
+        </div>
+
+        <div class="contactus_body_map">
+            <div class="map">
+                <div class="contact-map box">
+                    <div id="map" class="contact-map">
+                        <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+{% endblock %}

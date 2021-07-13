@@ -1,0 +1,13 @@
+.display_block {
+    display: flex!important;
+}
+
+.display_none {
+    display: none!important;
+}
+
+@media only screen and (max-width: 800px) {
+    .display_block {
+        display: flex!important;
+    }
+}

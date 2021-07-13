@@ -1,0 +1,146 @@
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+.aboutus {
+    margin-top: 100px;
+}
+
+.aboutus_heading {
+    background: rgb(75, 68, 195);
+    color: #fff;
+    font-size: 24px;
+    background: linear-gradient(90deg, rgba(75, 68, 195, 1) 0%, rgba(33, 108, 217, 1) 31%, rgba(0, 212, 255, 1) 100%);
+    padding: 50px 20px 50px 20px;
+    text-align: center;
+}
+
+.aboutus_body {
+    margin: 50px auto;
+    width: 80%;
+}
+
+.aboutus_body p {
+    font-size: 20px;
+    line-height: 28px;
+    color: #4d4d4d;
+}
+
+.aboutus_body_first {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.aboutus_body_left {
+    width: 50%;
+    padding: 10px;
+}
+
+.aboutus_body_right {
+    width: 50%;
+    padding: 10px;
+    height: 300px;
+}
+
+.aboutus_body_right img {
+    width: 100%;
+    height: 100%;
+}
+
+.aboutus_body_second {
+    padding: 80px 0px;
+}
+
+.aboutus_body_second_heading {
+    font-size: 28px;
+    line-height: 42px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.aboutus_body_second .values {
+    margin: 20px auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.aboutus_body_second .values .liblock {
+    display: flex;
+    list-style-type: none;
+    width: 30%;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.aboutus_body_second .values .liblock .li_img {
+    width: 20%;
+}
+
+.aboutus_body_second .values .liblock .li_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.aboutus_body_second .values .liblock .li_text {
+    padding-left: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .aboutus {
+        margin-top: 70px;
+    }
+    .aboutus_heading {
+        padding: 20px 10px 20px 10px;
+        text-align: center;
+    }
+    .aboutus_body {
+        margin: 20px auto;
+        width: 98%;
+    }
+    .aboutus_body_first {
+        display: block;
+    }
+    .aboutus_body_left {
+        text-align: center;
+        margin: auto;
+        width: 98%;
+        padding: 10px;
+    }
+    .aboutus_body_right {
+        margin: auto;
+        width: 100%;
+        padding: 10px;
+        height: 300px;
+    }
+    .aboutus_body_second {
+        padding: 40px 0px;
+    }
+    .aboutus_body_second_heading {
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+    .aboutus_body_second .values {
+        margin: 20px auto;
+        display: block;
+        width: 90%;
+    }
+    .aboutus_body_second .values .liblock {
+        display: flex;
+        list-style-type: none;
+        width: 100%;
+        margin: 10px auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+        padding: 1rem;
+        background-color: #fff;
+    }
+}

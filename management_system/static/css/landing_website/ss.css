@@ -1,0 +1,83 @@
+html{
+    box-sizing: border-box;
+}
+
+.subscribers_list{
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+   flex-flow : row wrap;
+}
+.sub{
+    width: 47%;
+    display: flex;
+    flex-flow : row wrap;
+    padding: 20px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+    margin: 10px;
+}
+.sub_img{
+    width: 15%;
+}
+.sub_img_div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.sub_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.sub_text{
+    width: 45%;
+    padding-left: 20px;
+}
+.sub_text span{
+   font-size: 14px;
+}
+.sub_text p{
+    font-weight:500;
+    margin: 0px 0px 10px 0px;
+    font-size:1rem ;
+}
+.sub_date{
+    text-align: center;
+    margin: auto;
+    width: 30%;
+    font-size: 14px;
+}
+a{
+    width: 100%;
+    text-decoration: none;
+}
+@media only screen and ( max-width: 800px) {
+.sub_date {
+    text-align: right;
+    margin: auto;
+    width: 30%;
+    font-size: 14px;
+}
+.subscribers_list{
+    width: 98%;
+    margin: 20px auto;
+    overflow: hidden;
+    display: block;
+   flex-flow : row wrap;
+}
+.sub{
+    width: 100%;
+    display: flex;
+    flex-flow : row wrap;
+    padding: 10px 20px;
+    box-shadow: none;
+    border-bottom: 1px solid rgb(231, 230, 230);
+    border-radius: 0px;
+    margin: 5px 0px;
+}
+.sub_text {
+    width: 35%;
+    padding-left: 20px;
+}
+}

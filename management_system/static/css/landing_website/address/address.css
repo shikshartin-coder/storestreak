@@ -1,0 +1,172 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+
+.address {
+    padding: 20px;
+    border: 1px solid #c7c7c7;
+}
+
+.address_heading h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+}
+
+.address_addnew {
+    border: 2px dashed #c7c7c7;
+    padding: 50px 0px;
+    text-align: center;
+    border-radius: 4px;
+    margin: 20px auto;
+}
+
+.address_addnew_img svg {
+    width: 30px;
+    height: 30px;
+    color: #565959!important;
+}
+
+.address_addnew_text h3 {
+    margin: 10px 0px;
+    padding: 0;
+    font-size: 24px;
+    color: #565959!important;
+}
+
+.address_block {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.address_present {
+    width: 23%;
+    padding: 10px 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin: 20px auto;
+}
+
+.address_present p {
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+}
+
+.address_present_detail .name {
+    font-weight: 700;
+}
+
+.address_buttons {
+    display: flex;
+    padding: 10px 0px;
+}
+
+.address_buttons a {
+    text-decoration: none;
+}
+
+.edit,
+.remove {
+    width: 48%;
+    text-align: center;
+}
+
+.edit,
+.remove {
+    margin: auto;
+    height: 20px;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+.edit a {
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+}
+
+.remove button {
+    color: #fff;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  
+    .address {
+        padding: 10px;
+        border: 1px none;
+    }
+    .address_addnew {
+        border: 2px dashed #c7c7c7;
+        padding: 15px 0px 15px 0px;
+        text-align: center;
+        border-radius: 4px;
+        margin: 20px auto;
+    }
+    .address_addnew_img svg {
+        width: 20px;
+        height: 20px;
+        color: #565959!important;
+    }
+    .address_addnew_text h3 {
+        margin: 0px 0px;
+        padding: 0;
+        font-size: 18px;
+        color: #565959!important;
+    }
+    .address_block {
+        display: block;
+        width: 100%;
+        margin: 20px auto;
+    }
+    .address_present {
+        width: 100%;
+        padding: 10px 10px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin: 20px auto;
+        font-size: 14px;
+    }
+    .address_present p {
+        margin: 5px 0px 0px 0px;
+        padding: 0;
+    }
+    .address_present_detail .name {
+        font-weight: 700;
+    }
+    .address_buttons {
+        display: flex;
+        padding: 10px 0px;
+    }
+    .address_buttons a {
+        text-decoration: none;
+    }
+    .edit,
+    .remove {
+        width: 46%;
+        text-align: center;
+    }
+}

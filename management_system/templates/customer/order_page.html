@@ -1,0 +1,142 @@
+{% extends './catalogue/base.html' %} {% block content %} {% load static %}
+
+<head>
+
+    <link rel="stylesheet" href="{% static './css/Business/order_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/ordercard.css' %}">
+
+</head>
+
+
+<body>
+    <div class="orderdetails">
+        <div class="orderdetails_top_head">
+                <h3>Order Details</h3>
+            </div>
+        <div class="orderdetails_top">
+
+             <div class="orderdetails_top_left">
+                 <div class="orderdetails_top_misc">
+                <div class="order_details_left">
+                    <p>Seller Name :</p>
+                    <p class="order_no_name">Order Number :</p>
+                    <p class="date_name">Ordered On : </p>
+                    <p class="order_amount">Total :</p>
+                    <p class="pay_mode">Payment Mode :</p>
+                    <p class="order_code">Order Code :</p>
+                </div>
+                <div class="order_details_right">
+                    <p> <a href="{% url 'catalog' business_key=business_obj.business_key %}">{{business_obj.Business_name | title}}</a></p>
+                    <p class="ordernumber">#{{order.order_id}}</p>
+                    <p class="date"> {{order.timestamp}}</p>
+                    <p class="amount">Rs. {{order.total_order_amount}}</p>
+                    <p class="pay_mode_value"> {{order.payment_mode}}</p>
+                    <p class="code"> {{order.order_otp}}</p>
+                </div>
+            </div>
+        </div>
+</div>
+        <div class="card_content">
+            <div class="card_head">
+                <p>Track Your Package</p>
+            </div>
+            <div class="timeline card_body">
+                <ul class="sessions">
+                    {% for timeline in status_timeline %}
+                    <li>
+                        <div class="time">{{timeline.status}} - <span class="dtae_time">{{timeline.timestamp}}</span></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card_content">
+            <div class="card_head">
+                {% if total_items == 1 %}
+                <p><span class="">{{total_items}} </span>Item</p>
+                {% else %}
+                <p><span class="">{{total_items}} </span>Items</p>
+                {% endif %}
+            </div>
+            <ul class="card_body product_details">
+                {% for order_product in product_order_list %} {% for product in ordered_products %}{% if product.id == order_product.product_type_id %}
+                <a href="{% url 'product' business_key=business_obj.business_key product_key=product.product_type_key %}">
+                    <li>
+                        <div class="order_component">
+                            <div class="image_component">
+                                <img src="../../{{product.image}}">
+                            </div>
+                            <div class="name_component">
+                                <div class="order_card_text_header">
+
+                                    <p class="order_card_business_name"> <span> {{product.name | title}}</span> <span class="total_cost">Rs. {{order_product.total_price}}</span> </p>
+                                    <span class="order_card_business_subname">{{business.category | title}}</span><span class="items">ITEMS : {{order_product.quantity}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+                {% endif %} {% endfor %} {% endfor %}
+            </ul>
+            <div class="orderdetails_summary">
+                <div class="orderdetails_summary_head">
+                    <h3>Order Summary</h3>
+                </div>
+                <div class="orderdetails_summary_body">
+
+                    <div class="orderdetails_summary_body_row">
+                        <span class="rowname">Item(s) Subtotal:</span>
+                        <span class="rowvalue">Rs {{item_sub_total}}</span>
+                    </div>
+
+                    <div class="orderdetails_summary_body_row">
+                        <span class="rowname">Delivery</span>
+                        <span class="rowvalue">Rs {{order.delivery_charge}}</span>
+                    </div>
+
+                    <div class="orderdetails_summary_body_row grand">
+                        <span class="rowname"> Grand Total</span>
+                        <span class="rowvalue big">Rs {{order.total_order_amount}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="card_content">
+            <div class="card_head">
+                <p>Shipping Address</p>
+            </div>
+            <div class="card_body">
+                <div class="orderdetails_shipping_address_detail">
+                    <p class="name">{{address_obj.name | title}}, {{address_obj.mobile}},</p>
+                    <p class="building"> <span> {{address_obj.building}}, </span> <span>{{address_obj.street}},</span></p>
+                    <p class="area"> <span>{{address_obj.city}}, </span><span>{{address_obj.state}},</span> <span>{{address_obj.pincode}}</span></p>
+                    <p class="landmark"><span>India</span></p>
+                    <p><span>{{address_obj.landmark}}, {{address_obj.address_type}}</span></p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

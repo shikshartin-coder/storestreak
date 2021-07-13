@@ -1,0 +1,718 @@
+h1 {
+    font-size: 3rem;
+}
+
+
+/*---------------------------------top part starts here--------------------------*/
+
+.homepage_first {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding-top: 70px;
+}
+
+
+/*----------------------------------Carousel Features----------------------*/
+
+.carousel-inner img {
+    width: 100%;
+    height: 500px;
+}
+
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 10%!important;
+    color: #fff;
+    text-align: center;
+    opacity: .5;
+    transition: opacity .15s ease;
+}
+
+
+/*--------------------------Carousel Features ENDS----------------------------*/
+
+
+/*----------------- Carousel FIRST SLIDE-------------------*/
+
+.carousel-caption1 {
+    position: absolute;
+    right: 40%;
+    top: 18%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    width: 60%;
+    text-align: center;
+}
+
+.carousel-caption1 button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    margin: 30px auto;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+.carousel-caption1_img {
+    width: 25rem;
+    height: 30rem;
+    position: absolute;
+    right: 10%;
+    top: 4%;
+    z-index: 10;
+    text-align: center;
+}
+
+.carousel-caption1_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+    z-index: -1!important;
+}
+
+
+/*---------------------------First SLIDE ENDS-----------------------------*/
+
+
+/*-------------------------Second slide starts-----------------*/
+
+.carousel-caption2 {
+    position: absolute;
+    right: 40%;
+    top: 25%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    width: 60%;
+    text-align: center;
+}
+
+.carousel-caption2 button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    margin: 30px auto;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+.carousel-caption2_img {
+    width: 30rem;
+    height: 30rem;
+    position: absolute;
+    right: 10%;
+    top: 4%;
+    z-index: 10;
+    text-align: center;
+}
+
+.carousel-caption2_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*------------------------Second slide ends-----------------*/
+
+
+/*-------------THIRD SLIDE STARTS------------------------*/
+
+.carousel-caption3 {
+    position: absolute;
+    right: 36%;
+    top: 10%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    width: 60%;
+    text-align: center;
+}
+
+.carousel-caption3 button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    margin: 30px auto;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+.carousel-caption3_img {
+    width: 20rem;
+    height: 20rem;
+    position: absolute;
+    right: 15%;
+    top: 20%;
+    z-index: 10;
+    text-align: center;
+}
+
+.carousel-caption3_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*----------------THIRD SLIDE ENDS---------------------------*/
+
+
+/*---------------------------------top part ends here--------------------------*/
+
+
+/*---------------------------Second part starts here----------------------------*/
+
+.homepage_services_part {
+    width: 96%;
+    margin: auto;
+}
+
+
+/*-----------------customer_service---------------------------*/
+
+.customer_service {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 30%);
+    background-image: radial-gradient( circle 621px at 25.3% 13.8%, rgba(255, 255, 255, 1) 0%, rgba(234, 236, 255, 1) 90%);
+    margin: 50px 0px;
+}
+
+.customer_service_img,
+.customer_service_text {
+    width: 50%;
+    padding: 20px;
+}
+
+.customer_service_img {
+    height: 600px;
+}
+
+.customer_service_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.customer_service_text h3 {
+    line-height: 26px;
+    font-weight: 600;
+    color: #ee741f;
+    margin-bottom: 16px;
+}
+
+.customer_service_text p {
+    font-size: 18px;
+    line-height: 26px;
+    color: #4d4d4d;
+}
+
+.customer_service_text button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    margin: 30px auto;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+
+/*-----------------customer_service ends---------------------------*/
+
+
+/*-----------------business_service---------------------------*/
+
+.business_service {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 30%);
+    background-image: radial-gradient( circle 621px at 25.3% 13.8%, rgba(255, 255, 255, 1) 0%, rgba(234, 236, 255, 1) 90%);
+    margin: 50px 0px;
+}
+
+.business_service_img,
+.business_service_text {
+    width: 50%;
+    padding: 20px;
+}
+
+.business_service_img {
+    height: 600px;
+}
+
+.business_service_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.business_service_text h3 {
+    line-height: 26px;
+    font-weight: 600;
+    color: #ee741f;
+    margin-bottom: 16px;
+}
+
+.business_service_text p {
+    font-size: 18px;
+    line-height: 26px;
+    color: #4d4d4d;
+}
+
+.business_service_text button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    margin: 30px auto;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+
+/*-----------------business_service ends---------------------------*/
+
+
+/*-----------------second part ends here------------------------------------*/
+
+
+/*-----------------------third part What is estore------------------*/
+
+.homepage_third {
+    width: 100%;
+    min-height: 300px;
+    padding: 50px 0px;
+    background: rgb(75, 68, 195);
+    background: linear-gradient(90deg, rgba(75, 68, 195, 1) 0%, rgba(33, 108, 217, 1) 31%, rgba(0, 212, 255, 1) 100%);
+    margin-bottom: 50px;
+}
+
+.homepage_third_intro {
+    width: 70%;
+    text-align: center;
+    margin: 0px auto 50px auto;
+}
+
+.homepage_third_intro p {
+    font-size: 18px;
+}
+
+.homepage_third_facts {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.facts_card {
+    width: 31%;
+    text-align: center;
+    margin: 0px 15px;
+    padding: 0px 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    padding: 3rem;
+    background-color: #fff;
+}
+
+.facts_img {
+    width: 3rem;
+    height: 3rem;
+    margin: 0rem auto 1rem auto;
+}
+
+.facts_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*-----------------------ends What is estore------------------*/
+
+
+/*-------------------------tools start here---------------------------------------*/
+
+.homepage_fifth {
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 100px;
+}
+
+.homepage_fifth_intro {
+    width: 70%;
+    text-align: center;
+    margin: 0px auto 50px auto;
+}
+
+.homepage_fifth_tools {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.tools_card {
+    width: 31%;
+    margin: 15px 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.tools_img {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.tools_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*-------------------------tools ends here----------------------------------------*/
+
+
+/*-----------------------------Responsive-----------------------------*/
+
+@media only screen and ( max-width: 600px) {
+    .homepage_first {
+        width: 98%;
+        text-align: center;
+        margin: auto;
+        padding-top: 52px;
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 250px;
+    }
+    .carousel-caption1 {
+        position: absolute;
+        right: 40%;
+        top: 18%;
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: #fff;
+        width: 60%;
+        text-align: center;
+    }
+    .carousel-caption1 h1,
+    .carousel-caption2 h1,
+    .carousel-caption3 h1 {
+        font-size: 1rem;
+    }
+    .carousel-caption1_img {
+        width: 8rem;
+        height: 9rem;
+        position: absolute;
+        right: 10%;
+        top: 0%;
+        z-index: 10;
+        text-align: center;
+    }
+    .carousel-caption1 button {
+        font-size: 16px;
+        width: 55%;
+        height: 37px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+    }
+    /*-------------------------Second slide starts-----------------*/
+    .carousel-caption2 {
+        position: absolute;
+        right: 49%;
+        top: 24%;
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: #fff;
+        width: 50%;
+        text-align: center;
+    }
+    .carousel-caption2 button {
+        font-size: 16px;
+        width: 60%;
+        height: 35px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+        margin: 20px auto;
+    }
+    .carousel-caption2_img {
+        width: 9rem;
+        height: 9rem;
+        position: absolute;
+        right: 5%;
+        top: 28%;
+        z-index: 10;
+        text-align: center;
+    }
+    .carousel-caption2_img img {
+        width: 100%;
+        height: 100%;
+    }
+    /*------------------------Second slide ends-----------------*/
+    /*-------------THIRD SLIDE STARTS------------------------*/
+    .carousel-caption3 {
+        position: absolute;
+        right: 40%;
+        top: 10%;
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: #fff;
+        width: 60%;
+        text-align: center;
+    }
+    .carousel-caption3 button {
+        font-size: 16px;
+        width: 60%;
+        height: 30px;
+        margin: 30px auto;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+    }
+    .carousel-caption3_img {
+        width: 9rem;
+        height: 9rem;
+        position: absolute;
+        right: 5%;
+        top: 28%;
+        z-index: 10;
+        text-align: center;
+    }
+    .carousel-caption3_img img {
+        width: 100%;
+        height: 100%;
+    }
+    /*----------------THIRD SLIDE ENDS---------------------------*/
+    /*-----------------customer_service---------------------------*/
+    .customer_service {
+        width: 100%;
+        display: block;
+        flex-flow: row wrap;
+        box-shadow: 0 3px 20px 0px rgb(0 0 0 / 30%);
+        background-image: radial-gradient( circle 621px at 25.3% 13.8%, rgba(255, 255, 255, 1) 0%, rgba(234, 236, 255, 1) 90%);
+        margin: 30px 0px;
+    }
+    .customer_service_img,
+    .customer_service_text {
+        width: 98%;
+        padding: 10px;
+    }
+    .customer_service_img {
+        height: 300px;
+    }
+    .customer_service_img img {
+        width: 100%;
+        height: 100%;
+    }
+    .customer_service_text h1 {
+        font-size: 1.2rem;
+    }
+    .customer_service_text h3 {
+        line-height: 26px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #ee741f;
+        margin-bottom: 0px;
+    }
+    .customer_service_text p {
+        font-size: 0.8rem;
+        line-height: 20px;
+        color: #4d4d4d;
+    }
+    .customer_service_text button {
+        font-size: 16px;
+        width: 100%;
+        height: 30px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        text-align: center;
+        outline: none;
+        margin: 10px auto;
+    }
+    .homepage_fifth {
+        width: 98%;
+        margin: auto;
+        min-height: 300px;
+        margin-bottom: 50px;
+    }
+    .homepage_fifth_intro {
+        width: 98%;
+        text-align: center;
+        margin: 0px auto 20px auto;
+    }
+    .homepage_fifth_intro h1 {
+        font-size: 1.2rem;
+    }
+    .homepage_fifth_tools {
+        width: 100%;
+        display: block;
+        flex-flow: row wrap;
+    }
+    .tools_card {
+        width: 98%;
+        margin: 15px auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+        padding: 1rem;
+        background-color: #fff;
+    }
+    .tools_img {
+        width: 2rem;
+        height: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .tools_text h3 {
+        line-height: 26px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #ee741f;
+        margin-bottom: 0px;
+    }
+    .tools_text p {
+        font-size: 0.8rem;
+        line-height: 20px;
+        color: #4d4d4d;
+    }
+    .homepage_third {
+        width: 100%;
+        min-height: 300px;
+        padding: 20px 0px;
+        margin-bottom: 20px;
+    }
+    .homepage_third_intro {
+        width: 98%;
+        margin: 0px auto 20px auto;
+    }
+    .homepage_third_intro h1 {
+        font-size: 1.5rem;
+    }
+    .homepage_third_intro p {
+        font-size: 0.8rem;
+    }
+    .homepage_third_facts {
+        width: 100%;
+        display: block;
+        flex-flow: row wrap;
+    }
+    .facts_card {
+        width: 98%;
+        text-align: left;
+        margin: 15px auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+        padding: 1rem;
+        background-color: #fff;
+    }
+    .facts_img {
+        width: 2rem;
+        height: 2rem;
+        margin: 0rem 0rem 1rem 0rem;
+    }
+    .facts_text h3 {
+        line-height: 26px;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0px;
+    }
+    .facts_text p {
+        font-size: 0.8rem;
+        line-height: 20px;
+        color: #4d4d4d;
+    }
+    .business_service {
+        width: 100%;
+        display: block;
+    }
+    .business_service_img,
+    .business_service_text {
+        width: 98%;
+        padding: 10px;
+    }
+    .business_service_img {
+        height: 300px;
+        padding: 10px;
+    }
+    .homepage_services_heading h1 {
+        font-size: 1.2rem;
+    }
+    .business_service_text h3 {
+        line-height: 26px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #ee741f;
+        margin-bottom: 0px;
+    }
+    .business_service_text p {
+        font-size: 0.8rem;
+        line-height: 20px;
+        color: #4d4d4d;
+    }
+    .business_service_text button {
+        font-size: 16px;
+        width: 100%;
+        height: 30px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        text-align: center;
+        outline: none;
+        margin: 10px auto;
+    }
+}

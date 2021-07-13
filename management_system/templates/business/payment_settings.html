@@ -1,0 +1,31 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './css/Business/settings.css' %}">
+</head>
+
+<body>
+    <form id="payment_form" action="{% url 'payment_settings' %}" method="POST">
+        {% csrf_token %}
+        <ul class="settings">
+            {% for key,values in payment_modes.items %} {% if payment_choice == values %}
+            <li>
+                <span class="setting_name">{{key}}</span>
+                <span class="setting_icon"> <input oninput="payment_submit()" checked="checked"  class="radio" type="radio" name="payment" value="{{values}}" ></span>
+            </li>
+            {% else %}
+            <li>
+                <span class="setting_name">{{key}}</span>
+                <span class="setting_icon"> <input oninput="payment_submit()"  class="radio" type="radio" name="payment" value="{{values}}" ></span>
+            </li>
+            {% endif %} {% endfor %}
+        </ul>
+    </form>
+    <script>
+        function payment_submit() {
+            document.getElementById('payment_form').submit();
+        }
+    </script>
+</body>
+{% endblock %}

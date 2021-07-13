@@ -1,0 +1,58 @@
+{% extends '../../customer/catalogue/base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/address/address.css' %}">
+</head>
+
+<body>
+
+
+        <div class="address">
+
+
+            <div class="address_heading">
+                <h3>Add New Address</h3>
+            </div>
+            <a href="{% url 'add-address' id='new' %}">
+                <div class="address_addnew">
+                    <div class="address_addnew_img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                  </svg>
+                    </div>
+                    <div class="address_addnew_text">
+                        <h3>Add Address</h3>
+                    </div>
+                </div>
+            </a>
+
+            <div class="address_block">
+                {% for address in address_list %}
+                <div class="address_present">
+                    <div class="address_present_detail">
+                        <p class="name">{{address.name}}</p>
+                        <p class="building">{{address.building}}</p>
+                        <p class="area">{{address.street}}</p>
+                        <p class="state_pincode">{{address.state}} {{address.pincode}}</p>
+                        <p class="mobile">Phone Number: {{address.mobile}}</p>
+                    </div>
+                    <div class="address_buttons">
+                        <span class="edit">
+                            <a href="{% url 'add-address' id=address.id %}">Edit</a>
+                        </span>
+                        <span class="remove">
+                        <form action="{% url 'add-address' id=address.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="btn" id="submit_btn" value="delete">Remove</button>
+                        </form>
+                      </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+
+</body>
+{% endblock %}

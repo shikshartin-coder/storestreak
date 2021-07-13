@@ -1,0 +1,86 @@
+@@ -15,6 +15,51 @@ html{
+	height: 100%;
+	
+}
+.otp_verification_1{
+	width: 50%;
+	margin: 100px auto;	
+	background-color: #F1F1F1;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+.otp_verification_1_1{
+	padding-top: 30px;
+}
+.otp_verification_1_1 img{
+	width: 200px;
+    height: 60px;
+}
+.otp_verification_1_1 h1{
+	font-size: 2rem;
+}
+.otp_verification_1_2 {	
+    margin: 30px auto;
+}
+.otp_verification_1_2 p{
+	line-height: 1.2rem;
+	font-size: 18px;
+	font-weight: 500;
+	margin-top: 20px;
+	color: #808080;
+}
+.otp_verification_1_3{
+	text-align: center;
+    height: 100%;
+}
+.otp_verification_1_3 input{
+	font-size: 18px;
+    line-height: 26px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    color: #1a181e;
+}
+.otp_verification_1_3 button{
+	font-size: 20px;	
+	height: 40px;
+	background-color: #146eb4;
+	border-radius: 10px;
+	color: #fff;
+	border:0;
+	outline: none;
+	width: 96%;
+	margin: 20px 0px 20px 0px;
+	
+}
+.otp_verification_1_3 label{
+	width:100%;
+	line-height: 1.2rem;
+	margin-bottom: 20px;
+}
+
+#otp_resend_button {
+	background: none!important;
+	border: none;
+	padding: 0!important;
+	/*optional*/
+	font-family: arial, sans-serif;
+	/*input has OS specific font-family*/
+	color: #069;
+	cursor: pointer;
+	width: auto;
+	font-size: 16px;
+
+  }
+
+@media only screen and ( max-width: 600px){
+.otp_verification_1{
+	width: 98%;
+	margin: 100px auto;
+	text-align: center;
+	background-color: #F1F1F1;
+	border-radius: 10px;
+}

@@ -1,0 +1,230 @@
+{% extends '../base.html' %} {% block content %} {% load static %}
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/catalogue/confirm_order.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="confirmorder">
+        <!--------------------------confirm order heading------------------->
+        <div class="confirmorder_heading">
+            <div class="heading">
+                <h1>Confirm Your Order</h1>
+            </div>
+        </div>
+        <!-----------------------confirm order proceedtobuy--------------->
+        <div class="confirmorder_proceedtobuy" onclick="item_summary_tab();">
+            <div class="proceedtobuy_text">
+                <div class="rowname">
+                    <p> Item(s) {{total_item_count}} </p>
+                    <p>Grand total: <span>Rs.</span><span id="up_grand_total"></span></p>
+                </div>
+                <div class="rowvalue"> </div>
+            </div>
+            <div class="proceedtobuy_button">
+                <button>View Details
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg></span>
+
+                </button>
+            </div>
+        </div>
+        <div class="order_details" id="order_details_tab">
+            <ul class="orderdetails_lines">
+                {% if buy_mode == 'normal_buy' %}
+                <!--------------------------confirm order card--------------------->
+                <div class="orderdetails_lines_heading">
+                    <h3><span class="orderdetails_lines_heading_value">1 </span> item</h3>
+                </div>
+
+                <li class="orderdetails_lines_card">
+
+                    <div class="orderdetails_lines_card_quantity">
+                        <div class="orderdetails_lines_card_img">
+                            <img src="../{{product_obj.image}}">
+                        </div>
+                        <a href="" class="product_name_div">
+                            <div class="product_name">
+                                <span>{{product_obj.name | title}} </span>
+                                <p class="sub_pro"><span>Pack Size </span><span> {{product_obj.pack_size}}</span><span> {{product_obj.unit}}</span></p>
+                                <span class="orderdetails_lines_card_unitprice_name sub_pro">Unit Price:<span class="orderdetails_lines_card_unitprice_value" id="cost"> {{product_obj.cost}}</span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <span class="orderdetails_lines_card_amount">
+                        <div class="orderdetails_lines_card_quantity_details">
+                   
+                            <span class="orderdetails_lines_card_quantity_value">               
+                            <form id="order_place" action="{% url 'payment_view'  %}" method="GET">  
+                                <input type="hidden" name="buy_mode" value="{{buy_mode}}">
+                                <input type="hidden" name="product_type_id" value="{{product_obj.id}}">
+                                <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+                                <input type="hidden" name="selected_address" value="{{default}}" id="selected_address">
+                                <input type="hidden" name="btn" value="place_order">
+                                <div class="confirmorder_card_quantity">
+                                    <select class="quantity" name="quantity" id="quantity" onclick="change_selection('quantity_hidden','quantity')">
+                              <option value="{{quantity}}" oninput="change"> {{quantity}}</option>
+                              <option class="option" value="1">1</option>
+                              <option class="option" value="2">2</option>
+                              <option class="option" value="3">3</option>
+                              <option class="option" value="4">4</option>
+                            </select>
+                                </div>
+                            </form>
+                  </span>
+        </div>
+        <div class="orderdetails_lines_card_amount_value"><span>Rs. </span><span class="product_per_cost"> {{total_product_price}}</span></div>
+        </span>
+        </li>
+
+        {% else %}
+        <!--------------------------confirm order card--------------------->
+
+
+        <div class="orderdetails_lines_heading">
+            <h3><span class="orderdetails_lines_heading_value">{{total_item_count}} </span>items</h3>
+        </div>
+        {% for cart in all_cart %} {% for product in product_in_cart %} {% if product.id == cart.product_type_id %}
+        <li class="orderdetails_lines_card">
+
+            <div class="orderdetails_lines_card_quantity">
+                <div class="orderdetails_lines_card_img">
+                    <img src="../{{product.image}}">
+                </div>
+                <a href="" class="product_name_div">
+                    <div class="product_name">{{product.name | title}}</div>
+                    <p class="sub_pro"><span>Pack Size </span><span> {{product.pack_size}}</span><span> {{product.unit}}</span></p>
+                    <span class="orderdetails_lines_card_unitprice_name sub_pro">Price  <span class="orderdetails_lines_card_unitprice_value sub_pro"> {{product.cost}}/pack</span></span>
+                </a>
+
+            </div>
+
+            <div class="orderdetails_lines_card_amount">
+                <div class="orderdetails_lines_card_quantity_details">
+                    <span class="orderdetails_lines_card_quantity_name">Quantiy: {{cart.quantity}}</span>
+                </div>
+                <div class="orderdetails_lines_card_amount_value"><span>Rs. </span><span class="product_per_cost"> {{cart.total_price}}</span></div>
+            </div>
+        </li>
+        {% endif %} {% endfor %} {% endfor %}
+
+        <form id="order_place" action="{% url 'payment_view'  %}" method="GET">
+            <input type="hidden" name="buy_mode" value="{{buy_mode}}">
+            <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+            <input type="hidden" name="selected_address" value="{{default}}" id="selected_address">
+            <input type="hidden" name="btn" value="place_order">
+            <div class="confirmorder_card_quantity">
+            </div>
+        </form>
+
+        {% endif %}
+
+        <div class="item_summary">
+            <p class="item_total"><span class="item_total_label">item total </span><span class="item_cost"> Rs. <span id="total_item_cost"></span ></span></p>
+
+            <p class="item_total"><span class="item_total_label">Delivery Charge  </span><span class="item_cost">Rs. <span id="delivery">{{delivery_obj.delivery_charge}}</span></span>
+
+            </p>
+            <p class="item_total"><span class="item_total_label grand_total_head">Grand Total</span><span class="item_cost total_amount">RS. <span id="grand_total"></span> </span>
+            </p>
+        </div>
+
+        <script>
+            product_cost = document.getElementsByClassName('product_per_cost')
+            var total_cost = 0;
+            for (i = 0; i < product_cost.length; i++) {
+                total_cost = total_cost + parseInt(product_cost[i].innerHTML)
+            }
+            document.getElementById('total_item_cost').innerHTML = total_cost;
+        </script>
+        {% if delivery_obj.delivery_type == 'custom' %}
+        <script>
+            total_item_cost = document.getElementById('total_item_cost');
+            delivery = document.getElementById('delivery');
+            if (parseInt(total_item_cost.innerHTML) > parseInt('{{delivery_obj.minimum_amount}}')) {
+                delivery.innerHTML = 0;
+            }
+        </script>
+        {% endif %}
+        </ul>
+    </div>
+
+    <div class="confirmorder_address">
+        <div class="address_label">Select a delivery location</div>
+        <div class="address_list">
+            {% for address in address_list reversed %}
+            <ul class="address_present" id="{{address.id}}">
+                <li class="address_present_detail">
+                    <p class="name">{{address.name | title}}, {{address.mobile}},</p>
+                    <p class="building"> <span> {{address.building}}, </span> <span>{{address.street}},</span></p>
+                    <p class="area"> <span>{{address.city}}, </span><span>{{address.state}},</span> <span>{{address.pincode}}</span></p>
+                    <p class="landmark"><span>India</span></p>
+                    <p><span>{{address.landmark}}, {{address.address_type}}</span></p>
+                    <button class="placeorder_address" onclick="change_address_selection('{{address.id}}')">Select and proceed To payment</button>
+                </li>
+            </ul>
+            {% endfor %}
+            <form id="address_form" action="{% url 'confirm_order'  %}" method="GET">
+                <input type="hidden" name="quantity" id="quantity_hidden" value="{{quantity}}">
+                <input type="hidden" name="product_type_id" value="{{product_obj.id}}">
+                <input type="hidden" name="buy_mode" value="{{buy_mode}}">
+                <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
+
+                <button id="address_btn" type="submit" name="btn" value="address_order_id" class="select_other_address">              
+              <h1>+</h1>
+              <h1>Add New Address</h1>                          
+          </button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+<script>
+    document.getElementById('grand_total').innerHTML = parseInt(document.getElementById('delivery').innerHTML) + parseInt(document.getElementById('total_item_cost').innerHTML)
+    document.getElementById('up_grand_total').innerHTML = document.getElementById('grand_total').innerHTML
+</script>
+
+<script>
+    var address_class = document.getElementsByClassName('address_present')
+
+    function change_address_selection(address_id) {
+        let selected_id_container = document.getElementById('selected_address');
+        selected_id_container.value = address_id;
+
+        for (i = 0; i < address_class.length; i++) {
+            address_class[i].style.border = '1px dotted #000';
+        }
+        clickSubmitButton('order_place');
+    }
+
+    function change_selection(id_to_be_changed, id_to_set) {
+        document.getElementById(id_to_be_changed).value = document.getElementById(id_to_set).value;
+    }
+
+    function clickSubmitButton(btn_id) {
+        let submit_btn = document.getElementById(btn_id);
+        submit_btn.submit();
+    }
+    var items_tab_flag = 0;
+
+    function item_summary_tab() {
+        item_tab = document.getElementById('order_details_tab')
+        if (parseInt(items_tab_flag) == 0) {
+            item_tab.style.display = 'block';
+            items_tab_flag = 1;
+        } else {
+            item_tab.style.display = 'none';
+            items_tab_flag = 0;
+        }
+
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,158 @@
+.payment {
+    width: 80%;
+    margin: auto;
+    margin-top: 90px;
+}
+
+.payment_body {
+    width: 80%;
+    margin: auto;
+}
+
+.payment_heading {
+    margin: 20px 0px;
+    width: 100%;
+}
+
+.payment_heading h1 {
+    font-size: 1.5rem;
+}
+
+.payment_details {
+    padding: 10px 20px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    margin: 20px 0px;
+    width: 100%;
+}
+
+.payment_details h2 {
+    font-size: 1rem;
+}
+
+.payment_method_heading h2 {
+    font-size: 1.2rem;
+}
+
+.payment_method_body {
+    width: 100%;
+    margin: auto;
+}
+
+.payment_details_body h3 {
+    font-size: 1rem;
+}
+
+.payment_method_1,
+.payment_method_2 {
+    width: 100%;
+    display: flex;
+    margin: 16px 0px;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    padding: 0.5rem 1rem;
+}
+
+.logo {
+    width: 20%;
+    height: 120px;
+}
+
+.logo_div {
+    width: 100px;
+    margin: auto;
+    text-align: center;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.text {
+    width: 60%;
+    padding-left: 20px;
+}
+
+.pay {
+    width: 20%;
+    text-align: center;
+    margin: auto;
+}
+
+.pay button {
+    font-size: 1rem;
+    width: 50%;
+    height: 30px;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+@media screen and (max-width: 800px) {
+    .payment {
+        width: 95%;
+        margin: auto;
+        margin-top: 5rem;
+    }
+    .payment_body {
+        width: 100%;
+        margin: auto;
+    }
+    .payment_details {
+        padding: 10px;
+    }
+    .logo {
+        width: 20%;
+        height: 90px;
+    }
+    .logo_div {
+        width: 50px;
+        margin: auto;
+        text-align: center;
+    }
+    .payment_method_1,
+    .payment_method_2 {
+        width: 100%;
+        display: flex;
+        margin: 20px 0px;
+        padding: 0px;
+    }
+    .logo {
+        width: 20%;
+        height: 50px;
+    }
+    .text {
+        width: 70%;
+        padding-left: 0.5rem;
+    }
+    .text h3 {
+        font-size: 1rem;
+        margin: 1rem 0rem 0.3rem 0rem;
+    }
+    .text p {
+        font-size: 0.7rem;
+    }
+    .pay {
+        width: 20%;
+        text-align: center;
+        margin: auto;
+    }
+    .payment_details_body h3 {
+        margin: 5px 0px;
+    }
+    .payment_details_body p {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    .pay button {
+        font-size: 0.7rem;
+        width: 70%;
+        height: 20px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+    }
+}

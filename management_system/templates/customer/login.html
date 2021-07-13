@@ -1,0 +1,54 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+    <title>LOGIN</title>
+</head>
+
+<body>
+    <div class="customer-login">
+        <div class="customer_login_1">
+            <div class="">
+                <img src="{% static './images/1.png' %}">
+            </div>
+            <h2>LOG IN</h2>
+            <p>New To Website, Signup is Free </p>
+        </div>
+        <div class="customer_login_2">
+            {% if page == 'outside' %}
+            <form action="{% url 'customer-login' %}" method="POST">
+                {% else %}
+                <form action="{% url 'inside_signup' %}" method="POST">
+                    {% endif %} {% csrf_token %} {% if error != None %}
+                    <p>{{error}}</p>
+                    {% endif %}
+                    <input required type="number" name="mobile_number" class="username" placeholder="Phone Number" value="{{mobile_number}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                    <input required type="password" name="password" class="password" placeholder="Password"> {% if page == 'inside' %}
+                    <input type="hidden" name="business_key" value="{{business_key}}">
+                    <input type="hidden" name="product_key" value="{{product_key}}">
+                    <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %} {% if page != 'inside' %}
+                    <div class="customer_login_3">
+                        <span><a href="{% url 'forgot-password' %}">Forgot Password ?</a> </span>
+                    </div>
+                    {% endif %}
+                    <button type="submit" name="btn" value="login_submit" class="submit_button">Log In</button>
+                </form>
+        </div>
+        {% if page != 'inside' %}
+        <p class="or">OR</p>
+        <div class="customer_login_4">
+            <a href="{% url 'customer-signup' %}"> <button>SignUp</button></a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

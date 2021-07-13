@@ -1,0 +1,113 @@
+.new_address {
+    width: 80%;
+    padding: 0px 20px;
+    border: none;
+    margin: auto;
+    margin-top: 0rem;
+}
+
+.new_address_heading h3 {
+    font-size: 24px;
+}
+
+.new_address_body label {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.new_address_body .star {
+    color: #e50b20;
+}
+
+.new_address_body input {
+    font-size: 18px;
+    line-height: 26px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    margin: 10px 0px 20px 0px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    color: #1a181e;
+}
+
+.new_address_button {
+    margin: auto;
+    text-align: right;
+}
+
+.new_address_button button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+#submit_btn {
+    display: none;
+}
+.selector{
+font-size: 18px;
+    line-height: 26px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    margin: 10px 0px 30px 0px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    color: #1a181e;
+
+}
+@media screen and (max-width: 600px) {
+    .new_address {
+        padding: 10px;
+        border: none;
+        width: 98%;
+        padding: 20px;
+        border: none;
+        margin: auto;
+        margin-top: 2rem;
+    }
+    .new_address_body label {
+        display: none;
+    }
+    .new_address_body input
+    {
+        font-size: 14px;
+        line-height: 14px;
+        padding: 8px 10px;
+        border-radius: 4px;
+        margin: 10px 0px 10px 0px;
+        border: 1px solid #d9d9d9;
+        width: 100%;
+        color: #1a181e;
+    }
+    .selector {
+    font-size: 14px;
+    line-height: 14px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    color: #1a181e;
+}
+    .new_address_button {
+        margin: 10px auto 10px auto;
+        text-align: center;
+    }
+    .new_address_button button {
+        font-size: 16px;
+        width: 70%;
+        height: 30px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+    }
+}

@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% block content %}
+{% load static %}
+<h1>cart</h1>
+
+{% for cart in all_cart %}
+{% for product in active_cart %}
+{% if product.id == cart.product_type_id %}
+<p>{{product.name}} <span>{{cart.quantity}}</span></p>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+{% endblock %}

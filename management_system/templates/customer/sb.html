@@ -1,0 +1,33 @@
+{% extends './catalogue/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static './css/landing_website/ss.css' %}">
+</head>
+
+<div class="subscribers_list">
+    {% for subscribed in subscribed_list %}
+
+            <a class="sub" href="{% url 'catalog' business_key=subscribed.business_key %}">
+            <div class="sub_img">
+                <div class="sub_img_div">
+                    <img src="{% static './images/default_image.png' %}">
+                </div>
+            </div>
+            <div class="sub_text">
+                <p>{{subscribed.name}}</p>
+                <span>{{subscribed.category}}</span>
+            </div>
+            <div class="sub_date">
+                <span>{{subscribed.timestamp|date:"M d, Y"}}</span>
+            </div>
+        </a>
+
+
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

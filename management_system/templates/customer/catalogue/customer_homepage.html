@@ -1,0 +1,158 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/catalogue/customer_homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/base/modal.css' %}">
+
+    <title>Homepage</title>
+</head>
+
+<body>
+    <div class="customer_homepage">
+        <div class="category_div" onclick="open_category(this,'category_div','businesslist','up','down')">
+            <span class="cardheader category_side">Subscribed Businesses</span>
+
+            <span class="up">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+      </span>
+            <span class="down close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+      </span>
+
+        </div>
+
+
+        <ul class="businesslist open">
+            {% for business in subscribe_business_list %}
+            <li class="business_card">
+                <a class="cardname img_cont" href="{% url 'catalog' business_key=business.business_key %}">
+                    <div class="business_card_img">
+                        <div class="business_card_img_div">
+                            <img src="../{{business.dp_image}}">
+                        </div>
+                    </div>
+                </a>
+
+                <div class="business_card_text">
+                    <a class="cardname" href="{% url 'catalog' business_key=business.business_key %}">
+                        <p class=" cardname">{{ business.Business_name | title }}
+                            <span class="share_icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                  </svg>
+                            </span>
+                        </p>
+                        <h6 class="cardsubname">{{business.category | title}}</h6>
+                    </a>
+                    <p class="link_sub"> <a class="business_card_text_sub unsubscribe" href="{% url 'subscribe' business_key=business.business_key action='unsubscribe' %}">SUSCRIBED</a>
+                    </p>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="category_div" onclick="open_category(this,'category_div','businesslist','up','down')">
+            <span class="cardheader category_side">All Businesses</span>
+
+            <span class="up">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+      </span>
+            <span class="down close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+      </span>
+
+        </div>
+        <ul class="businesslist open">
+            {% for business in all_business %}
+            <li class="business_card">
+                <a class="cardname img_cont" href="{% url 'catalog' business_key=business.business_key %}">
+                    <div class="business_card_img">
+                        <div class="business_card_img_div">
+                            <img src="../{{business.dp_image}}">
+                        </div>
+                    </div>
+                </a>
+
+                <div class="business_card_text">
+                    <a class="cardname" href="{% url 'catalog' business_key=business.business_key %}">
+                        <p class=" cardname">{{ business.Business_name | title }}
+                            <span class="share_icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                  </svg>
+                            </span>
+                        </p>
+                        <h6 class="cardsubname">{{business.category | title}}</h6>
+                    </a>
+                    {% if request.user.id == None %}
+                    <p class="link_sub"><a class="business_card_text_sub" data-toggle="modal" data-target="#exampleModal" onclick="show('non_user_modal')">SUBSCRIBE</a></p>
+                    {% else %}
+                    <p class="link_sub"><a class="business_card_text_sub" href="{% url 'subscribe' business_key=business.business_key action='subscribe' %}">SUBSCRIBE</a></p>
+                    {% endif %}
+                    </p>
+
+                </div>
+            </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+
+    <div class="mobile_form">
+        <!-- Modal content -->
+        <div id="non_user_modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal_close" onclick="hide('non_user_modal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'inside_signup' %}" method="POST" class="mobile_form">
+                        {% csrf_token %}
+                        <h1 class="cardheader">Enter Your Mobile Number</h1>
+                        <p class="cardsubname">Please enter your mobile number to login or signup and proceed.</p>
+                        <input type="hidden" name="business_key" id='business_key'>
+                        <input type="text" placeholder="Mobile Number" name="mobile_number">
+                        <button type="submit" name="btn" value="subscribe" onclick="add_value('business_key','business_key_original')">Verify</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="{% static './js/modal.js' %}"></script>
+<script>
+    function add_value(id_to_change, id_to_receive) {
+        document.getElementById(id_to_change).value = document.getElementById(id_to_receive).value;
+    }
+
+    function copy_function(elem) {
+        var inputc = document.body.appendChild(document.createElement("input"));
+        inputc.value = elem;
+        inputc.select();
+        document.execCommand('copy');
+        inputc.parentNode.removeChild(inputc);
+        alert("URL Copied.");
+    }
+</script>
+<script src="{% static './js/toggle_heading.js' %}"></script>
+
+{% endblock %}

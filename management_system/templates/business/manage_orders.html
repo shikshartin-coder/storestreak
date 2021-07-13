@@ -1,0 +1,71 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+
+<head>
+    <title>Manage-orders</title>
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/ordercard.css' %}">
+</head>
+
+<body>
+    <div class="order_page">
+        <div class="orderlist_top">
+            <div class="orderlist_top_head">
+                <h1>Orders</h1>
+            </div>
+            <div class="orderlist_top_filter">
+                <form action="{% url 'manage_order' %}" method="POST" id="filter_form">
+                    {% csrf_token %}
+                    <label>Filter By:</label>
+                    <select class="filter" name="filter_type" onchange="filter_orders()">
+                    {% for filter_status in filter_status_list %}
+                        {% if filter_type == filter_status.val %}
+                        <option value="{{filter_status.val}}" selected="selected">{{filter_status.name}}</option>
+                        {% else %}
+                        <option value="{{filter_status.val}}">{{filter_status.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                </form>
+            </div>
+        </div>
+        <ul class="order_card">
+            {% for order,values in order_dict.items %} {% for customer in all_customer %} {% if customer.id == order.customer_id %}
+
+            <a style="text-decoration: none;" href="{% url 'order_page' order_id=order.order_id %}">
+                <li>
+                    <div class="order_component">
+                        <div class="image_component">
+                            <img src="../../static/images/heroslide2.png">
+                        </div>
+                        <div class="name_component">
+                            <div class="order_card_text_header">
+
+                                <p class="order_card_business_name"> <span>{{customer.name | title}}- {{order.order_id}}</span> <span class="total_cost">Rs. {{order.total_order_amount}}</span> </p>
+                                <span class="order_card_business_subname">{{business.category | title}}</span><span class="items">ITEMS : {{values.p_count}}</span>
+                            </div>
+
+
+                        </div>
+                        <div class="status_component">
+
+
+                        </div>
+                    </div>
+                    {% for key,value in order_status_list.items %} {% if key.id == order.id %}
+                    <p class="time_status"><span class="order_date">ORDERED ON: {{order.timestamp}}</span><span class="order_status">{{value | title}}</span> </p>
+                    {% endif %} {% endfor %}
+                </li>
+            </a>
+
+            {% endif %} {% endfor %} {% empty %}
+            <p></p>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        function filter_orders() {
+            let form = document.getElementById('filter_form');
+            form.submit();
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/business_profile.css' %}">
+    <title>Document</title>
+    <style>
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile_body">
+        <form id="root" action="{% url 'profile_view' user_id=request.user.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="image_form">
+
+                <div class="image_grid">
+                    <div class="image_upload_div">
+                        <input type="file" id="file-1" accept="image/*" value="{{business_obj.dp_image}}">
+                        <input type="hidden" id="file_input_1" name="dp_image">
+                        <label for="file-1" id="file-1-preview">
+                  <img src="../{{business_obj.cover_image}}" alt="">
+                  <div>
+                    <span>+</span>
+                  </div>
+                </label>
+                    </div>
+                </div>
+
+                <div class="image_grid_2">
+                    <div class="image_upload_div_2">
+                        <input type="file" id="file-2" accept="image/*" value="{{business_obj.cover_image}}">
+                        <input type="hidden" id="file_input_2" name="cover_image">
+
+                        <label for="file-2" id="file-2-preview">
+                      <img src="../{{business_obj.dp_image}}" alt="">
+                      <div>
+                        <span>+</span>
+                      </div>
+                    </label>
+                    </div>
+                    <div class="image_grid_2_text">
+                        <h3 id="business_name">{{business_obj.Business_name}}</h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="profile_form">
+                <label>Business Name<span class="star"> *</span></label>
+                <input type="text" name="business_name" id="myInput" oninput="myFunction()" placeholder="business_name" value="{{business_obj.Business_name}}">
+                <label>Personal Name<span class="star"> *</span></label>
+                <input type="text" name="name" placeholder="name" value="{{business_obj.name}}">
+                <label>Category<span class="star"> *</span></label>
+                <input type="text" name="business_category" placeholder="business_category" value="{{business_obj.category}}" readonly>
+                <label>Business URL<span class="star"> *</span></label>
+                <input type="text" name="business_key" placeholder="business_key" value="{{business_obj.business_key}}" readonly>
+                <label>Business Mobile Number<span class="star"> *</span></label>
+                <input type="number" name="mobile" placeholder="mobile" value="{{business_obj.mobile}}" readonly> {% if address_id == 'new' %}
+                <a href="{% url 'add-address' id='new' %}">
+                    <div class="address_addnew">
+                        <div class="address_addnew_img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                    </svg>
+                        </div>
+                        <div class="address_addnew_text">New Address</div>
+                    </div>
+                </a>
+                {% else %}
+
+                <div class="address_present_detail">
+                    <p class="name">{{address.name}}</p>
+                    <p class="building">{{address.building}}</p>
+                    <p class="area">{{address.street}}</p>
+                    <p class="state_pincode">{{address.state}} {{address.pincode}}</p>
+                    <p class="mobile">Phone Number: {{address.mobile}}</p>
+                    <a href="{% url 'add-address' id=address_id %}">Edit Address</a>
+                </div>
+
+
+
+
+
+                {% endif %}
+                <div class="profile_form_button">
+                    <button type="submit" name="btn" value="edit-profile">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview img").src = url;
+            });
+        }
+
+        previewBeforeUpload("file-1");
+        previewBeforeUpload("file-2");
+    </script>
+
+    <script src="{% static './js/image_compressor.js' %}"></script>
+    <script>
+        function verify_original_width_height(ev, submit_inp) {
+            const MIME_TYPE = "image/jpeg";
+            const QUALITY = 0.7;
+            const append_form = document.getElementById("root");
+            const submit_input = document.getElementById(submit_inp);
+            const file = ev.target.files[0];
+            const blobURL = URL.createObjectURL(file);
+            const img = new Image();
+            img.src = blobURL;
+            img.onload = function() {
+                MAX_WIDTH = this.naturalWidth,
+                    MAX_HEIGHT = this.naturalHeight;
+
+                ratio = MAX_HEIGHT / MAX_WIDTH
+                if (submit_inp == 'file_input_2') {
+                    MAX_WIDTH = 1300
+                } else {
+                    MAX_WIDTH = 400
+                }
+                MAX_HEIGHT = MAX_WIDTH * ratio
+                compress_base64(ev, submit_input, append_form, MAX_WIDTH, MAX_HEIGHT, MIME_TYPE, QUALITY)
+            }
+        }
+
+
+        document.getElementById('file-1').addEventListener("change", function(ev) {
+            verify_original_width_height(ev, 'file_input_2')
+        })
+        document.getElementById('file-2').addEventListener("change", function(ev) {
+            verify_original_width_height(ev, 'file_input_1')
+        })
+    </script>
+</body>
+
+</html>
+{% endblock %}

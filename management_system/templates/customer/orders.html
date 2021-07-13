@@ -1,0 +1,41 @@
+{% extends './catalogue/base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/ordercard.css' %}">
+</head>
+<div class="order_page">
+
+    <ul class="order_card">
+        {% for order,values in order_dict.items %}
+        <a href="{% url 'customer_order_page' order_id=order.order_id %}">
+            <li>
+                <div class="order_component">
+                    <div class="image_component">
+                        <img src="../../static/images/heroslide2.png">
+                    </div>
+                    <div class="name_component">
+                        <div class="order_card_text_header">
+                            {% for business in all_business %} {% if business.id == order.business_id %}
+                            <p class="order_card_business_name"> <span>{{business.Business_name | title}}- {{order.order_id}}</span> <span class="total_cost">Rs. {{order.total_order_amount}}</span> </p>
+                            <span class="order_card_business_subname">{{business.category | title}}</span><span class="items">ITEMS : {{values}}</span> {% endif %} {% endfor %}
+                        </div>
+
+
+                    </div>
+                    <div class="status_component">
+
+
+                    </div>
+                </div>
+                {% for key,value in order_status_list.items %} {% if key.id == order.id %}
+                <p class="time_status"><span class="order_date">ORDERED ON: {{order.timestamp}}</span><span class="order_status">{{value | title}}</span> </p>
+                {% endif %} {% endfor %}
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+
+
+
+
+</div> {% endblock %}

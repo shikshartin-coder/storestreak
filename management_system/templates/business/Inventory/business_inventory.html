@@ -1,0 +1,162 @@
+{% extends '../base.html' %} {% block content %} {% load static %}
+
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="{% static './css/Business/inventory/business_inventory.css' %}">
+
+</head>
+
+<div class="inventory_body">
+    <ul class="category_listing">
+        {% for key,values in all_category.items %}
+        <li>
+            <div class="category" onclick="open_category(this,'category','category_products','up','down')">
+                <span class="category_name">{{key.name | title}} </span>
+                <span class="up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-chevron-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+                    </svg>
+                </span>
+                <span class="down close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </span>
+            </div>
+            <div class="category_products open">
+                <ul class="category_product_list">
+                    {% for product_type in values %}
+                    <li class="inventory_card_each">
+                        <form class="inventory_card" id="inventory_card" action="{% url 'inventory' %}" method="POST">
+                            {% csrf_token %}
+                            <!-----------inventory card top-------------------->
+                            <div class="inventory_card_top">
+                                <div class="inventory_card_image">
+                                    <img src="./{{product_type.image}}">
+                                </div>
+                                <div class="inventory_card_text">
+                                    <h3 class="product_name">
+                                        <a href="{% url 'edit_product' product_type_id=product_type.id %}">
+                                            {{product_type.name | title}}</a> {% if product_type.status == True %}
+                                        <button class="active_icon green" type="submit" name="btn" value="active">
+                                            <span onclick=""><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                    height="16" fill="currentColor" class="bi bi-circle-fill"
+                                                    viewBox="0 0 16 16">
+                                                    <circle cx="8" cy="8" r="8" />
+                                                </svg></span>
+                                        </button> {% else %}
+                                        <button class="active_icon red" type="submit" name="btn" value="deactive">
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                                    <circle cx="8" cy="8" r="8" />
+                                                </svg></span>
+                                        </button> {% endif %}
+                                    </h3>
+                                    <div class="product_pack">
+                                        <p class="card_content"> <span class="product_pack_size_name">Cost: </span><span class="product_pack_size">RS {{product_type.cost}}</span> </p>
+                                        <p class="card_content"><span class="product_pack_size_name">Pack: </span><span class="product_pack_size"> {{product_type.pack_size}}
+                                                {{product_type.unit}}</span> </p>
+
+                                    </div>
+                                    <!----------------out of stock/enable buttons----------------------------------->
+
+                                    <div class="inventory_card_buttons">
+                                        <input type="hidden" name="product_type_id" id="" value="{{product_type.id}}">
+                                        <button class="out_of_stock" type="submit" name="btn" value="out_of_stock">Out
+                                            of stock</button>
+                                    </div>
+
+                                    <!-----------------------buttons ends here------------>
+
+                                </div>
+                                <!----------------inventory text image-->
+                            </div>
+                            <!--------------------inventory stock part---------------------------->
+                            <div class="inventory_card_stock">
+                                <p class="stock" onclick="stock_display('{{product_type.stock}}','{{product_type.id}}')">
+                                    <span class="stock_name">Stock:</span>
+                                    <span class="stock_vallue">{{product_type.stock}}</span>
+                                </p>
+                            </div>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+<div class="mobile_form">
+    <form action="{% url 'inventory' %}" method="POST">
+        {% csrf_token %}
+        <!-- Modal content -->
+        <div id="stock-modal" class="modal close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal_close" onclick="stock_display()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="hidden" name="product_type_id" id="product_type_id">
+                        <input type="number" class="form-control" id="stock" name="stock" required>
+                        <h3 id="emailHelp" class="form-text text-muted">Change Your Stock</h3>
+                        <button type="submit" name="btn" value="change_stock" class="btn btn-primary">Change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>
+
+<script>
+    function stock_display(stock, product_type_id) {
+
+        var modal = document.getElementById('stock-modal');
+
+
+        if (modal.className == 'modal close') {
+            modal.className = 'modal open';
+            document.getElementById('stock').value = stock;
+            document.getElementById('product_type_id').value = product_type_id;
+        } else {
+            modal.className = 'modal close';
+        }
+    }
+</script>
+
+<script>
+    function open_category(elem, class1, class2, icon1, icon2) {
+        var category = document.getElementsByClassName(class1);
+        var category_products = document.getElementsByClassName(class2);
+        var icon1_class = document.getElementsByClassName(icon1)
+        var icon2_class = document.getElementsByClassName(icon2)
+
+        var flag;
+        for (var i = 0; i < category.length; i++) {
+            if (category[i] == elem) {
+                flag = i;
+            }
+        }
+
+        if (category_products[flag].className == class2 + ' open') {
+            category_products[flag].className = class2 + ' close';
+            icon1_class[flag].className = icon1 + ' close';
+            icon2_class[flag].className = icon2 + ' open';
+        } else {
+            category_products[flag].className = class2 + ' open';
+            icon1_class[flag].className = icon1 + ' open';
+            icon2_class[flag].className = icon2 + ' close';
+        }
+    }
+</script>
+
+
+
+{% endblock %}

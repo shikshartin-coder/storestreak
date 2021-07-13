@@ -1,0 +1,233 @@
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #FAFAFA;
+}
+
+.contactus_head {
+    height: 400px;
+    position: absolute;
+    background: rgb(75, 68, 195);
+    background: linear-gradient(90deg, rgba(75, 68, 195, 1) 0%, rgba(33, 108, 217, 1) 31%, rgba(0, 212, 255, 1) 100%);
+    width: 100%;
+    z-index: 0;
+    left: 0;
+    top: 0;
+}
+
+.contactus_body {
+    width: 80%;
+    margin: 150px auto 50px auto;
+    padding: 50px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.contactus_body_innerdiv {
+    width: 90%;
+    margin: auto;
+}
+
+.contactus_body_heading h3 {
+    font-size: 24px;
+    color: #4d4d4d;
+    margin-bottom: 20px;
+}
+
+.contactus_body_heading p {
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    line-height: 28px;
+    color: #4d4d4d;
+}
+
+.contactform {
+    margin-top: 35px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.contactformblock {
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+.contactformblock_message {
+    width: 98%;
+}
+
+.contactform label {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #4d4d4d;
+    margin-bottom: 8px;
+}
+
+.contactform input,
+.contactform textarea {
+    font-size: 18px;
+    line-height: 26px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    margin: 10px 0px 20px 0px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    color: #1a181e;
+}
+
+.contactform button {
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    background-color: #146eb4;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+
+.contactus_body_footer {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.contactus_body_footer_address,
+.contactus_body_footer_email,
+.contactus_body_footer_phone {
+    width: 33%;
+}
+
+.contactus_body_footer h3 {
+    font-size: 24px;
+    color: #4d4d4d;
+    padding: 0px 0px 10px 0px;
+}
+
+.contactus_body_footer p {
+    font-size: 16px;
+    line-height: 28px;
+    color: #4d4d4d;
+}
+
+.contactus_body_footer_email a {
+    color: #146eb4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.contactus_body_map {
+    width: 100%;
+    margin: 50px auto 20px auto;
+    background-color: #fff !important;
+}
+
+.map {
+    width: 90%;
+    padding: 50px 0px;
+    margin: auto;
+}
+
+
+/*-----------------------RESPONSIVE-----------------------*/
+
+
+/*-----------------------RESPONSIVE-----------------------*/
+
+
+/*-----------------------RESPONSIVE-----------------------*/
+
+
+/*-----------------------RESPONSIVE-----------------------*/
+
+
+/*-----------------------RESPONSIVE-----------------------*/
+
+@media screen and (max-width: 600px) {
+    .contactus_head {
+        height: 200px;
+    }
+    .contactus_body {
+        width: 100%;
+    margin: 100px auto 50px auto;
+    padding: 20px 0px 20px 0px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    }
+    .contactus_body_heading p {
+        margin: 0px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .contactform {
+        margin-top: 15px;
+        display: block;
+    }
+    .contactformblock {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contactform label {
+        display: none;
+    }
+    .contactform input,
+    .contactform textarea {
+        font-size: 14px;
+        line-height: 14px;
+        padding: 8px 10px;
+        border-radius: 4px;
+        margin: 10px 0px 10px 0px;
+        border: 1px solid #d9d9d9;
+        width: 100%;
+        color: #1a181e;
+    }
+    .contactform button {
+        font-size: 16px;
+        width: 70%;
+        height: 30px;
+        background-color: #146eb4;
+        border-radius: 5px;
+        color: #fff;
+        border: 0;
+        outline: none;
+    }
+    .contactus_body_footer {
+        width: 90%;
+        margin: auto;
+        display: block;
+        text-align: center;
+    }
+    .contactus_body_footer_address,
+    .contactus_body_footer_email,
+    .contactus_body_footer_phone {
+        width: 98%;
+        margin: 20px auto;
+    }
+    .contactus_body_footer h3 {
+        font-size: 20px;
+        color: #4d4d4d;
+        padding: 0px 0px 10px 0px;
+    }
+    .contactus_body_footer p {
+        font-size: 16px;
+        line-height: 24px;
+        color: #4d4d4d;
+    }
+    .contactus_body_map {
+        width: 100%;
+        margin: 40px auto 20px auto;
+        background-color: #fff !important;
+    }
+    .map {
+        width: 98%;
+        padding: 50px 0px;
+        margin: auto;
+    }
+}

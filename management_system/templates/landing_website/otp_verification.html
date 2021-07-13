@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+</head>
+
+<body>
+
+    <div class="customer-login otp_page">
+        <div class="customer_login_1">
+            <img src="{% static './images/1.png' %}">
+            <h2>Verification</h2>
+            <p>You will get an OTP via SMS</p>
+        </div>
+        <div class="otp_verification_1_2">
+
+        </div>
+        <div class="otp_verification_1_3">
+            {% if page == 'business' %}
+            <form action="{% url 'business-signup' %}" method="POST">
+                {% elif page == 'customer' %}
+                <form action="{% url 'customer-signup' %}" method="POST">
+                    {% elif page == 'forgot_password' %}
+                    <form action="{% url 'forgot-password' %}" method="POST">
+                        {% elif page == 'inside' %}
+                        <form action="{% url 'inside_signup' %}" method="POST">
+                            {% endif %} {% csrf_token %}
+                            <input name="mobile_number" type="hidden" value="{{mobile_number}}" readonly>
+                            <input type="hidden" name="otp_id" value="{{otp_id}}">
+                            <input placeholder="OTP" class="username" name="otp"> {% if page == 'inside' %}
+                            <input type="hidden" name="business_key" value="{{business_key}}">
+                            <input type="hidden" name="product_key" value="{{product_key}}">
+                            <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
+                            <button type="submit" name="btn" value="otp_submit" class="submit_button otp_submit">Submit OTP</button>
+                            <p class="resend_p">Didnt Get The OTP Yet ? <button class="resend" type="submit" name="btn" value="otp_resend" id="otp_resend_button">Resend OTP</button></p>
+                        </form>
+        </div>
+    </div>
+</body>
+
+</html>

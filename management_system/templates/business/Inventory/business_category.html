@@ -1,0 +1,46 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/inventory/business_category.css' %}">
+    <title>business_category</title>
+</head>
+<body>
+	<div class="category">
+		{% if error != None %}
+		<h1>{{error}}</h1>
+		{% endif %}
+		<a href="{% url 'inventory_view' part='add-category' %}">
+		<div class="category_addnew">
+				<div class="category_addnew_img">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+					<path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+					</svg>
+				   </div>
+				  <div class="category_addnew_text">
+					<h3>Add category</h3>
+				  </div>
+		</div>
+		</a>
+		<div class="category_block">
+
+	      {% for category,pro in all_category_dict.items %}
+            <div class="category_present">
+                <div class="category_present_detail">
+                    <div class="category_present_detail_img">
+                        <img src="../{{category.image}}">
+                    </div>
+                    <div class="category_present_detail_info">
+                        <h3> <a href="{% url 'edit_category' category_id=category.id %}">{{category.name | title}}</a> </h3>
+                        <p class="total">
+                            <span class="total">Total items: </span>
+                            <span class="items">{{pro}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+	</div>
+</body>
+{% endblock %}

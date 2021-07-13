@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+
+</head>
+
+<body>
+
+    <div class="customer-login verification">
+        <div class="customer_login_1 verification_head">
+            <img src="{% static './images/1.png' %}">
+            <h2>Verification</h2>
+            <p>We Will Send a <span>One Time Password</span> on your phone number </p>
+
+            <div class="error">
+                {% if error != None %}
+                <p>{{error}}</p>
+                {% endif %} {% if error == "Mobile number already exist" %} {% if user_type == "customer" %}
+                <p>Please proceed to <a href="{% url 'customer-login' %}">login</a></p>
+                {% else %}
+                <p></p>
+                {% endif %} {% endif %}
+            </div>
+
+        </div>
+        <div class="customer_login_2">
+            {% if page == 'business' %}
+            <form action="{% url 'business-signup' %}" method="POST">
+                {% elif page == 'customer' %}
+                <form action="{% url 'customer-signup' %}" method="POST">
+                    {% elif page == 'forgot_password' %}
+                    <form action="{% url 'forgot-password' %}" method="POST">
+                        {% elif page == 'inside' %}
+                        <form action="{% url 'inside_signup' %}" method="POST">
+                            {% endif %} {% csrf_token %}
+                            <input type="number" class="username" placeholder="Mobile Number." name="mobile_number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                            <input type="hidden" name="page" value="{{page}}"> {% if page == 'inside' %}
+                            <input type="hidden" name="business_key" value="{{business_key}}">
+                            <input type="hidden" name="product_key" value="{{product_key}}">
+                            <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
+                            <button type="submit" name="btn" value="mobile_number_submit" class="submit_button ver_btn">Send OTP</button>
+                        </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

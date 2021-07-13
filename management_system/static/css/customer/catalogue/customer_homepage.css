@@ -1,0 +1,222 @@
+.businesslist {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.customer_homepage {
+    margin-top: 60px;
+}
+
+
+
+.business_card {
+    width: 30%;
+    display: block;
+    margin: auto;
+    margin-bottom: 3.6rem;
+    box-shadow: 0 3px 20px 0px rgb(0 0 0 / 12%);
+    border-radius: 4px;
+}
+
+.business_card_img {
+    width: 100%;
+    height: 220px;
+}
+
+.business_card_img_div {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+}
+
+.business_card_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.business_card_text {
+    width: 100%;
+    text-align: center;
+}
+
+.business_card_text h3 {
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+}
+
+.category_div {
+    width: 100%;
+    margin: 1rem 0rem 2rem 0rem;
+}
+
+.category_side {
+    margin-left: 18px;
+}
+
+.business_card_text_sub {
+    color: #CC0000;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.link_sub {
+    margin: 0rem;
+    padding: 1rem 0px;
+}
+
+.link_sub:hover .business_card_text_sub {
+    text-decoration: underline;
+}
+.listing{
+    padding: 0px;
+    margin: 0px;
+}
+.listing li{
+    text-decoration: none;
+    list-style: none;
+}
+
+.up,
+.down {
+    float: right;
+}
+
+.close {
+    display: none;
+}
+
+.open {
+    display: flex;
+}
+
+.share_icon {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .businesslist {
+        display: block;
+        flex-flow: row wrap;
+    }
+    .business_card {
+        width: 98%;
+        margin: 0px auto 0px auto;
+        padding: 5px 0px;
+        display: flex;
+        box-shadow: none;
+        border-bottom: 2px solid rgb(248, 248, 248);
+        border-radius: 4px 4px 0px 0px;
+    }
+    .business_card_img {
+        width: 30%;
+        height: 120px;
+    }
+    .business_card_img_div {
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        margin: 5px auto;
+        text-align: center;
+    }
+    .business_card_img img {
+        width: 100%;
+        height: 100%;
+    }
+    .business_card_text {
+        width: 70%;
+        text-align: left;
+        padding: 0.3rem;
+        padding-left: 0.5rem;
+    }
+    .business_card_text h3 {
+        margin: 0;
+        font-size: 1rem;
+        padding: 5px 0px 10px 0px;
+    }
+    .business_card_text h6 {
+        margin: 0;
+        padding: 0px 0px 5px 0px;
+    }
+    .business_card_img {
+        width: 100%;
+        height: 80px;
+    }
+    .business_card_text_sub {
+        margin-top: 5px;
+        text-align: right;
+        padding-right: 20px;
+    }
+    .business_card_text_sub a {
+        color: #CC0000;
+        padding: 0;
+        font-weight: 500;
+        background-color: #fff;
+        font-size: 15px;
+        border: none;
+        white-space: nowrap;
+    }
+    .category_side {
+        margin-left: 0px;
+    }
+    .cardheader {
+        color: rgb(28, 28, 28);
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        font-weight: 500;
+    }
+    .category_div {
+        width: 100%;
+        padding: 1rem 0rem 1rem 0.5rem;
+         margin: 1rem 0rem 0rem 0rem;
+    }
+    .img_cont {
+        width: 30%;
+    }
+    .cardname {
+        text-align: left;
+        font-size: 1.1rem;
+        line-height: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        margin-top: 0.5rem;
+        padding: 0px;
+    }
+    .cardsubname {
+        text-align: left;
+    }
+    .link_sub {
+        margin: 0rem;
+        padding: 0rem 0px;
+    }
+    .share_icon {
+        float: right;
+        margin-right: 0.3rem;
+        display: block;
+    }
+    .up,
+    .down {
+        float: right;
+        margin-right: 1rem;
+        margin-top: 0.2rem;
+    }
+    .up,
+    .down {
+        float: right;
+    }
+    .close {
+        display: none;
+    }
+    .open {
+        display: flex;
+    }
+}
+
+.unsubscribe {
+    color: rgb(185, 185, 185) !important;
+}

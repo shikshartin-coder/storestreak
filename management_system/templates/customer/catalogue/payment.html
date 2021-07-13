@@ -1,0 +1,66 @@
+{% extends '../base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/catalogue/payment.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="payment">
+        <form id="payment_form" action="{% url 'payment_view' %}" method="GET">
+            <input type="hidden" name="buy_mode" value="{{buy_mode}}">
+            <input type="hidden" name="product_type_id" value="{{product_type_id}}">
+            <input type="hidden" name="business_key" value="{{business_key}}">
+            <input type="hidden" name="quantity" value="{{quantity}}">
+            <input type="hidden" name="selected_address" value="{{selected_address}}">
+            <input type="hidden" name="payment_option" id="payment_option">
+        </form>
+        <div class="payment_body">
+
+            <div class="payment_method_heading">
+                <h2>Select A Payment Method</h2>
+            </div>
+            {% if payment_choice == 'PAYTM' or payment_choice == 'BOTH' %}
+            <div class="payment_method_1" onclick="payment_option('PAYTM')">
+                <div class="logo">
+                    <div class="logo_div">
+                        <img src="{% static './images/paytm.png' %}">
+                    </div>
+                </div>
+                <div class="text">
+                    <h3>Pay Online</h3>
+                    <p>Connect To Paytm For Safer Payment Options.</p>
+                </div>
+                <div class="pay">
+                    <button>Pay</button>
+                </div>
+            </div>
+            {% endif %} {% if payment_choice == 'COD' or payment_choice == 'BOTH' %}
+            <div class="payment_method_2" onclick="payment_option('COD')">
+                <div class="logo">
+                    <div class="logo_div">
+                        <img src="{% static './images/delivery.png' %}">
+                    </div>
+                </div>
+                <div class="text">
+                    <h3>Pay On Delivery</h3>
+                    <p>You Dont need to Pay Anything Extra charges while paying with COD.</p>
+                </div>
+                <div class="pay">
+                    <button>Pay</button>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function payment_option(option) {
+            document.getElementById('payment_option').value = option;
+            document.getElementById('payment_form').submit();
+        }
+    </script>
+</body>
+{% endblock %}

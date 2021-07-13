@@ -1,0 +1,153 @@
+ {% extends '../base.html' %} {% block content %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static './css/Business/inventory/business_new_inventory.css' %}">
+    <title>Document</title>
+       <style>
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="new_inventory">
+
+        {% if page == 'edit' %}
+        <form id="root" action="{% url 'edit_product' product_type_id=product_type_obj.id %}" method="POST" enctype="multipart/form-data">
+            {% else %}
+            <form id="root" action="{% url 'inventory_view' part='add-product' %}" method="POST" enctype="multipart/form-data">
+                {% endif %} {% csrf_token %}
+                <div class="add_product_image">
+
+                    <div class="image_form">
+                        <div class="image_grid">
+                            <div class="image_upload_div">
+                                <label for="file-1" id="file-1-preview">
+                    {% if page == 'edit' %}
+                    <input type="file"  id="file-1"   class="image-upload" accept="image/*" />
+                    <input type="hidden" id="image_submit"  name="product_image">
+                  {% else %}
+                    <input type="file" id="file-1" class="image-upload" accept="image/*" />
+                    <input type="hidden" id="image_submit"  name="product_image">
+                  {% endif %}
+
+                  <img src="../{{product_type_obj.image}}" alt="">
+                  <div>
+                    <span>+</span>
+                  </div>
+                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="add_product_details">
+
+                    <div class="add_product_details_context">
+
+                        <label>Product Category<span class="star"> *</span></label>
+                        <select name="category_id" required class="category_selecter" placeholder="Price Per Pack">
+            {% if page == 'edit' %}
+             {% for category in category_list %}
+             {% if category.id == category_id %}
+             <option selected value="{{category.id}}">{{category.name | title}}</option>
+             {% else %}
+             <option value="{{category.id}}">{{category.name | title}}</option>
+             {% endif %}
+             {% endfor %}
+            {% else %}
+            <option value="">Choose a Category</option>
+            {% for category in category_list %}
+            <option value="{{category.id}}">{{category.name | title}}</option>
+            {% endfor %}
+            {% endif %}
+
+             </select>
+
+                        <div class="each_block">
+
+                        <label>Product Name<span class="star"> *</span></label>
+                        <input required type="text" name="product_name" value="{{product_type_obj.name}}" placeholder="Product Name">
+                        </div>
+
+                        <div class="each_block">
+                        <label>Initial Stock<span class="star"> *</span></label>
+                        <input required type="number" value="{{product_type_obj.stock}}" name="initial_stock" placeholder="Inital Stock">
+                        </div>
+
+                        <div class="each_block">
+                        <label>Price Per Pack<span class="star"> *</span></label>
+                        <input required type="number" value="{{product_type_obj.cost}}" name="price_per_unit" placeholder="Price Per Pack">
+                        </div>
+
+                        <div class="each_block">
+                        <label>MRP<span class="star"> *</span></label>
+                        <input type="number" name="mrp" value="{{product_type_obj.mrp}}"  required placeholder="MRP">
+                        </div>
+
+                         <div class="each_block_pack_size">
+                        <label>Pack Size<span class="star"> *</span></label>
+                        <input required  value="{{product_type_obj.pack_size}}" type="number" name="pack_size" placeholder="Pack Size">
+                          </div>
+
+                         <div class="each_block_pack_size">
+                         <label>Unit<span class="star"> *</span></label>
+                       <select required class="unit_selecter" name="unit" placeholder="Price Per Pack">
+              {% if page == 'edit' %}
+              <option  value="{{product_type_obj.unit}}"> {{product_type_obj.unit}}</option>
+               {% else %}
+              <option selected value="">Choose..</option>
+              {% endif %}
+              {% for unit in unit_lists %}
+              <option  value="{{unit}}"> {{unit}}</option>
+              {% endfor %}
+
+            </select>
+</div>
+                        <label>Product Description<span class="star"> *</span></label>
+                        <textarea required name="product_description" class="Product_description" rows="4" cols="50" placeholder="Product Description">{{product_type_obj.content}}</textarea>
+
+                    </div>
+                    <div class="addproductbutton">
+                        {% if page == 'edit' %}
+                        <button name="btn" value="edit_product" class="addproduct" type="submit">Update Product</button> {% else %}
+                        <button name="btn" value="new_product" class="addproduct" type="submit">Add Product</button> {% endif %}
+                    </div>
+                </div>
+            </form>
+    </div>
+
+<script type="text/javascript">
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview img").src = url;
+            });
+        }
+        previewBeforeUpload("file-1");
+    </script>
+    <script src="{% static './js/image_compressor.js' %}"></script>
+    <script>
+        const MAX_WIDTH = 500;
+        const MAX_HEIGHT = 500;
+        const MIME_TYPE = "image/jpeg";
+        const QUALITY = 0.7;
+        const append_form = document.getElementById("root");
+        const submit_input = document.getElementById('image_submit');
+        document.getElementById('file-1').addEventListener("change", function(ev) {
+            compress_base64(ev, submit_input, append_form, MAX_WIDTH, MAX_HEIGHT, MIME_TYPE, QUALITY)
+        })
+    </script>
+
+
+</body>
+
+{% endblock %}

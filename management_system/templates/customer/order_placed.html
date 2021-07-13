@@ -1,0 +1,37 @@
+{% extends './catalogue/base.html' %} {% block content %}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './css/customer/catalogue/order_placed.css' %}">
+</head>
+
+<body>
+    <div class="payment_success">
+        <div class="success_img">
+            <img src="{% static './images/success.png' %}">
+        </div>
+        <div class=" success_text ">
+            <h1>Congratulations !</h1>
+            <h3>Your Order has been placed successfully.</h3>
+            <p class="order_text">We received your order and will begin processing it soon. Please check your order related details.</p>
+
+            <p>Order Id : <span class="Transaction id "><a href="{% url 'customer_order_page' order_id=order_obj.order_id %}">#{{order_obj.order_id}}</a> </span></p>
+            {% if transaction_obj != None %}
+            <p>Transaction Id : <span class="Transaction id ">{{transaction_obj.txnid}}</span></p>
+            {% else %}
+            <p>Payment Mode : <span class="Transaction id ">Cash On Delivery</span></p>
+            {% endif %}
+
+        </div>
+        <div class="success_redirect ">
+            <a href="{% url 'catalog' business_key=business_obj.business_key %}">Shop More</a>
+            <a href="{% url 'customer_order_page' order_id=order_obj.order_id %}">View Order</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static './css/Business/inventory/add_category.css' %}">
+    <title>business_category</title>
+        <style>
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="add_category">
+
+      {% if page != 'edit' %}
+      <form  id="root" action="{% url 'inventory_view' part='add-category' %}" method="POST"  enctype="multipart/form-data">
+        {% else %}
+      <form  id="root" action="{% url 'edit_category' category_id=category_obj.id  %}" method="POST"  enctype="multipart/form-data">
+        {% endif %}
+        {% csrf_token %}
+          <div class="add_category_image">
+
+            <div class="image_form">
+            <div class="image_grid">
+              <div class="image_upload_div">
+                 <label for="file-1" id="file-1-preview">
+                   {% if page != 'edit' %}
+                    <input   type="file" id="file-1" class="image-upload"  accept="image/*" />
+                    <input  id="image_submit" type="hidden" name="category_image">
+                    {% else %}
+                    <input  id="file-1" type="file" class="image-upload"  accept="image/*" />
+                    <input required id="image_submit" type="hidden" name="category_image" value="{{category_obj.image}}">
+                    {% endif %}
+                  <img src="../{{category_obj.image}}" alt="">
+                  <div>
+                    <span>+</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          </div>
+          <div class="add_category_details">
+
+            <div class="add_category_details_context">
+              <div class="add_category_details_context_label"><label>Category Name<span class="star"> *</span></label></div>
+              <input required type="text" name="category_name" placeholder="category Name" value="{{category_obj.name}}">
+
+            </div>
+            <div class="addcategorybutton">
+              {% if page == 'edit' %}
+              <button class="addcategory" name="btn" value="edit-category" type="submit">Add category</button>
+              {% else %}
+               <button class="addcategory" name="btn" value="add-category" type="submit">Add category</button>
+               {% endif %}
+            </div>
+          </div>
+      </form>
+
+    </div>
+
+   <script type="text/javascript">
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview img").src = url;
+            });
+        }
+
+        previewBeforeUpload("file-1");
+    </script>
+    <script src="{% static './js/image_compressor.js' %}"></script>
+    <script>
+        const MAX_WIDTH = 300;
+        const MAX_HEIGHT = 300;
+        const MIME_TYPE = "image/jpeg";
+        const QUALITY = 0.7;
+        const append_form = document.getElementById("root");
+        const submit_input = document.getElementById('image_submit');
+        document.getElementById('file-1').addEventListener("change", function(ev) {
+            compress_base64(ev, submit_input, append_form, MAX_WIDTH, MAX_HEIGHT, MIME_TYPE, QUALITY)
+        })
+    </script>
+  </body>
+
+{% endblock %}

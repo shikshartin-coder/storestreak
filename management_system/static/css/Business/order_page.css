@@ -1,0 +1,251 @@
+.orderdetails {
+    width: 80%;
+    margin: auto;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.orderdetails_top {
+    display: flex;
+}
+
+.orderdetails_top_left {
+    width: 65%;
+
+}
+
+.orderdetails_top_right {
+    width: 35%;
+    text-align: right;
+    float: right;
+    margin: 1.5rem 0rem;
+}
+
+.orderdetails_top_head h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.orderdetails_top_misc {
+    display: flex;
+}
+
+.order_details_left {
+    width: 30%;
+}
+
+.order_details_right {
+    width: 70%;
+}
+.orderdetails_top_right button{
+    font-size: 16px;
+    width: 40%;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+.status_order{
+    font-size: 16px;
+    line-height: 18px;
+    padding: 5px 5px;
+    border-radius: 4px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #d9d9d9;
+    width: 55%;
+    color: #1a181e;
+}
+
+.order_details_left p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card_content {
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 10px;
+    margin: 1rem 0rem;
+}
+
+.card_head {
+    padding: 0.5rem 1rem;
+    background: #dfdeda;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ececec, #eeeded, #F2F2F2, #ebebeb);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f1f0f0, #eeeeee, #fafafa, #ececec);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.card_head p {
+    font-size: 1rem;
+    margin: 0.2rem 0rem;
+}
+
+.card_body {
+    padding: 1rem 1rem;
+    border-radius: 10px;
+}
+
+.sessions {
+    border-radius: 12px;
+    position: relative;
+    margin: 0;
+}
+
+.timeline li {
+    padding-bottom: 1.5rem;
+    list-style: none;
+    border-left: 1px solid #000;
+    position: relative;
+    padding-left: 20px;
+    margin-left: 10px;
+    z-index: -1;
+}
+
+.timeline li:last-child {
+    border: 0px;
+    padding-bottom: 0;
+}
+
+.timeline li:before {
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    background: white;
+    border: 1px solid #97CB60;
+    box-shadow: 1px 1px 0px #97CB60;
+    box-shadow: 1px 1px 0px #97CB60;
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: 0px;
+    z-index: -1;
+}
+
+.time {
+    color: #60833a;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.product_details {
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.orderdetails_summary {
+    margin: 0rem 2rem;
+    font-size: 0.8rem;
+    color: #333;
+    padding-bottom: 1rem;
+}
+
+.rowvalue {
+    float: right;
+    color: #333;
+    font-weight: 600;
+}
+
+.orderdetails_summary_body_row {
+    font-size: 0.8rem;
+    margin: 0.5rem 0rem;
+}
+
+.grand {
+    margin: 1rem 0rem;
+}
+
+.big {
+    font-size: 1.1rem;
+}
+
+@media only screen and ( max-width: 800px) {
+    .orderdetails_top_left {
+    width: 100%;
+}
+.status_order {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 5px 5px;
+    border-radius: 4px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #d9d9d9;
+    width: 48%;
+    color: #1a181e;
+}
+    .orderdetails_top_right button{
+    font-size: 14px;
+    width: 49%;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    outline: none;
+}
+    .orderdetails {
+        width: 95%;
+        margin: auto;
+    }
+    .orderdetails_top {
+        display: block;
+    }
+    .order_details_left {
+        width: 45%;
+    }
+    .order_details_right {
+        width: 55%;
+    }
+    .orderdetails_top_right {
+        float: none;
+        text-align: left;
+        width: 100%;
+    }
+    .mobile_form {
+        padding: 0px !important;
+    }
+    .order_details_left p {
+        font-size: 0.8rem;
+    }
+    .order_details_right p {
+        font-size: 0.8rem;
+    }
+    .time {
+        color: #60833a;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+    .orderdetails_top_head h3 {
+        font-size: 1.2rem;
+        color: #333;
+    }
+    .card_head p {
+        font-size: 0.9rem;
+        margin: 0rem 0rem;
+    }
+    .order_component {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.5rem 0rem !important;
+    }
+    .card_body {
+        padding: 0.5rem 0.8rem;
+        border-radius: 10px;
+    }
+    .orderdetails_summary {
+        margin: 0rem 1rem;
+        font-size: 0.8rem;
+        color: #333;
+        padding-bottom: 1rem;
+    }
+    .big {
+        font-size: 0.9rem;
+    }
+    .orderdetails_shipping_address_detail p {
+        font-size: 0.8rem;
+    }
+}
