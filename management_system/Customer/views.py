@@ -38,10 +38,13 @@ def login_submit_customer(request, page, hidden_val, context):
             return redirect(homepage)
         elif hidden_val == 'buy_now':
             return redirect(product, business_key=context['business_key'], product_key=context['product_key'])
-        elif hidden_val == 'cart':
+        elif hidden_val == 'cart' or hidden_val == 'cart_product_page':
             cart.add_to_cart_authentication_required(
-                username, business_key=context['business_key'], product_key=context['product_key'])
-            return redirect(catalog, business_key=context['business_key'])
+                username, business_key=context['business_key'], product_key=context['product_key'], quantity=quantity)
+            if hidden_val == 'cart':
+                return redirect(catalog, business_key=context['business_key'])
+            else:
+                return redirect(product, business_key=context['business_key'], product_key=context['product_key'])
     else:
         context.update({'error': error})
         return render(request, './customer/login.html', context)
@@ -139,6 +142,7 @@ def inside_signup(request):
         business_key = request.POST.get('business_key')
         product_key = request.POST.get('product_key')
         hidden_val = request.POST.get('hidden_btn')
+        quantity = request.POST.get('quantity', 1)
 
         context = {
             'error': None,
@@ -147,6 +151,7 @@ def inside_signup(request):
             'hidden_val':  hidden_val,
             'mobile_number': mobile_number,
             'product_key': product_key,
+            'quantity': quantity,
         }
 
         if user_type == CUSTOMER:
@@ -162,13 +167,17 @@ def inside_signup(request):
                 context.update({
                     'hidden_val': 'cart',
                 })
+            if btn == 'cart_product_page':
+                context.update({
+                    'hidden_val':'cart_product_page',
+                })
             if btn == 'login_submit':
                 return login_submit_customer(request, 'inside', hidden_val, context)
 
             return render(request, './customer/login.html', context)
 
         elif user_type == None:
-            if btn == 'subscribe' or btn == 'otp_resend' or btn == 'mobile_number_submit' or btn == 'buy_now' or btn == 'cart':
+            if btn == 'subscribe' or btn == 'otp_resend' or btn == 'mobile_number_submit' or btn == 'buy_now' or btn == 'cart' or btn == 'cart_product_page':
                 returned_dict = {
                     'otp_id': None,
                     'error': None,
@@ -190,6 +199,10 @@ def inside_signup(request):
                     if btn == 'cart':
                         context.update({
                             'hidden_val': 'cart',
+                        })
+                    if btn == 'cart_product_page':
+                        context.update({
+                            'hidden_val':'cart_product_page',
                         })
                     return render(request, './landing_website/otp_verification.html', context)
             elif btn == 'otp_submit':
@@ -225,10 +238,13 @@ def inside_signup(request):
                             return redirect(subscribe, business_key=business_key, action=hidden_val)
                         elif hidden_val == 'buy_now':
                             return redirect(product, business_key=business_key, product_key=product_key)
-                        elif hidden_val == 'cart':
+                        elif hidden_val == 'cart' or hidden_val == 'cart_product_page':
                             cart.add_to_cart_authentication_required(
-                                username, business_key, product_key)
-                            return redirect(catalog, business_key)
+                                username, business_key, product_key, quantity = 1)
+                            if hidden_val == 'cart':
+                                return redirect(catalog, business_key)
+                            else:
+                                return redirect(product, business_key=business_key, product_key=product_key)
                         else:
                             return redirect(homepage)
                     else:
