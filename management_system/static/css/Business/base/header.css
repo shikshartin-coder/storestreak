@@ -72,7 +72,7 @@ li {
     top: 0px;
     left: 0px;
     right: 0px;
-    background: #5a9eff;
+    background: var(--primarycolor);;
 
 
 
@@ -248,7 +248,7 @@ li {
 .nav_footer_1 {
     width: 100%;
     height: 100%;
-        background: #5a9eff;
+        background:var(--primarycolor);
 
 
 
