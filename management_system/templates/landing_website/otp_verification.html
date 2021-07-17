@@ -37,7 +37,6 @@
                             <input placeholder="OTP" class="username" name="otp"> {% if page == 'inside' %}
                             <input type="hidden" name="business_key" value="{{business_key}}">
                             <input type="hidden" name="product_key" value="{{product_key}}">
-                            <input type="hidden" name="quantity" value="{{quantity}}">
                             <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
                             <button type="submit" name="btn" value="otp_submit" class="submit_button otp_submit">Submit OTP</button>
                             <p class="resend_p">Didnt Get The OTP Yet ? <button class="resend" type="submit" name="btn" value="otp_resend" id="otp_resend_button">Resend OTP</button></p>
