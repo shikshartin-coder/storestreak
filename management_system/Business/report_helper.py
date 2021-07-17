@@ -7,10 +7,12 @@ def convert_product_report_attributes_to_list(report_query):
     product_object = Product_type_interface().get_product_type_by_id(report_query['product_type_id'])
     category_id = Product_interface().get_category_id_from_product_type_id(report_query['product_type_id'])
     category_object = Category_interface().get_category_by_id(category_id)
+    product_object_name = product_object.name if product_object!=None else None
+    category_object_name = category_object.name if category_object!=None else None
     returned_list = [
         str(report_query['product_type_id']),
-        str(product_object.name),
-        str(category_object.name),
+        str(product_object_name),
+        str(category_object_name),
         str(report_query['total_quantity']),
         str(report_query['total_orders']),
         str(report_query['total_amount']),
@@ -22,13 +24,15 @@ def convert_delivery_report_attributes_to_list(request, report_query):
     #customer_order_address = order_address_interface().get_order_address_using_user_id(request.user.id)
     customer_address_object = order_address_interface().get_order_address_by_id(report_query['order_id'])
     customer_address = get_customer_address_for_display_from_address_object(customer_address_object)
+    customer_name = customer.name if customer!=None else None
+    customer_mobile = customer.mobile if customer!=None else None
     returned_list = [
         str(report_query['order_id']),
         str(report_query['customer_id']),
-        str(customer.name),
+        str(customer_name),
         None,
         str(report_query['total_amount']),
-        str(customer.mobile),
+        str(customer_mobile),
         customer_address,
     ]    
     return returned_list
@@ -48,11 +52,11 @@ def process_general_report_list(request, report1_queryset):
     for report1_object in report1_queryset:
         customer = Customer_Interface().get_customer_by_id(report1_object.customer_id)
         customer_id = report1_object.customer_id
-        customer_name = customer.name
+        customer_name = customer.name if customer!=None else None
         order_id = report1_object.order_id
         payment_method = report1_object.payment_mode
         order_amount = report1_object.total_order_amount
-        customer_phone = customer.mobile
+        customer_phone = customer.mobile if customer!=None else None
         customer_address_object = order_address_interface().get_order_address_by_id(order_id)
         customer_address = get_customer_address_for_display_from_address_object(customer_address_object)
         counter = 0
