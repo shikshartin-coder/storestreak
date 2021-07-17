@@ -1,14 +1,4 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
-}
 
-html,
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Lato', sans-serif;
-}
 
 ul,
 li {
@@ -75,7 +65,7 @@ a{
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     height: 70px;
-        background: #5a9eff;
+        background: var(--primarycolor);;
 
 
 }
