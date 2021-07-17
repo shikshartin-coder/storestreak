@@ -17,5 +17,5 @@ urlpatterns = [
     path('profile-business/<user_id>',views.profile_view,name="profile_view"),
     #path('payment-settings',views.payment_settings,name="payment_settings"),
     path('delivery-settings',views.delivery_settings,name="delivery_settings"),
-
+    path('report',views.report,name="report"),
 ]
