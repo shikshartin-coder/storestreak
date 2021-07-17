@@ -1,4 +1,25 @@
 
+html,body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+ h1,h2,h3,h4,h5,h6{
+    font-family: var(--headingfontfamily);
+ }
+ p,a,span,input,label,div,button{
+  font-family: var(--bodyfontfamily);
+ }
+ ul,li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ a{
+   margin: 0px;
+    padding: 0px;
+  text-decoration: none;
+ }
 .dropdown div a {
   display: block;
 }
@@ -15,22 +36,7 @@
 }
 
 
-html,
-body {
-    margin: 0px;
-    padding: 0px;
-}
 
-ul,
-li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-a{
-    text-decoration:none;
-    color: #000 !important;
-}
 
 .navigation {
     background: var(--primarycolor);

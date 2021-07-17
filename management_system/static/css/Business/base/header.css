@@ -1,24 +1,24 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+html,body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
-a{
-    text-decoration:none;
-    color: #000;
-}
-html,
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Lato', sans-serif;
-}
-
-ul,
-li {
+ h1,h2,h3,h4,h5,h6{
+    font-family: var(--headingfontfamily);
+ }
+ p,a,span,input,label,div,button{
+  font-family: var(--bodyfontfamily);
+ }
+ ul,li {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+ a{
+   margin: 0px;
+    padding: 0px;
+  text-decoration: none;
+ }
 
 .cardheader {
     color: rgb(28, 28, 28);
