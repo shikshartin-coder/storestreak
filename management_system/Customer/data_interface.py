@@ -155,6 +155,11 @@ class Product_orders_interface():
 
     def get_product_order_by_order_id(self,order_id):
         return Order_products.objects.filter(order_id = order_id)
+    
+    def get_product_orders_grouped_by_product_type_id_using_business_id_and_active_order_ids(self, business_id):
+        order_ids_for_business = Orders_interface().get_order_ids_for_active_orders_using_business_id(business_id=business_id)
+        result = Order_products.objects.filter(order_id__in=order_ids_for_business).values('product_type_id').annotate(total_quantity=Sum('quantity'), total_orders=Count('product_type_id'), total_amount=Sum('total_price')).order_by()
+        return result
 
 class Orders_interface():
     def create_order(self,product_type_id,business_id,customer_id,quantity,address_id,total_price,order_otp,total_order_amount,delivery_charge,payment,payment_mode):
@@ -284,13 +289,30 @@ class Orders_interface():
         order_list .active = False
         order_list .save()
         return True
+    
+    def get_all_orders_grouped_by_order_id_annotating_total_price_using_business_id(self, business_id):
+        order_ids_for_business = Orders_interface().get_order_ids_for_active_orders_using_business_id(business_id=business_id)
+        result = Orders.objects.filter(order_id__in=order_ids_for_business).values('order_id','customer_id').annotate(total_amount=Sum('total_order_amount')).order_by('customer_id')
+        #print(result)
+        return result
+
+
+    def get_all_active_orders_using_business_id(self, business_id):
+        active_order_ids = order_status_interface().get_order_ids_for_active_orders()
+        orders = Orders.objects.filter(order_id__in=active_order_ids, business_id = business_id)
+        return orders
+
+    def get_order_ids_for_active_orders_using_business_id(self, business_id):
+        active_order_ids = order_status_interface().get_order_ids_for_active_orders()
+        order_ids_for_business = Orders.objects.filter(order_id__in=active_order_ids, business_id=business_id).values_list('order_id', flat=True)
+        return order_ids_for_business
 
 class order_status_interface():
     one_time_status = {
-        's1':'Ordered',
-        's2':'Accepted',
-        's3':'Rejected',
-        's4':'Delivered'
+        's1':'ordered',
+        's2':'accepted',
+        's3':'rejected',
+        's4':'delivered'
     }
 
     order_status = {
@@ -324,7 +346,7 @@ class order_status_interface():
         return Orders_status.objects.filter(order_id = order_id)
 
     def get_order_ids_for_active_orders(self):
-        return Orders_status.objects.values_list('order_id', flat=True).filter(active = True)
+        return Orders_status.objects.values_list('order_id', flat=True).filter(active = True, status = order_status_interface().one_time_status['s2'])
 
     def get_order_ids_for_status(self, status):
         return Orders_status.objects.values_list('order_id', flat=True).filter(status = status, active = True)
