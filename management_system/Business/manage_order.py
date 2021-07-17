@@ -8,9 +8,8 @@ def order_management(request):
     order_dict = {}
     filter_status_dict = order_status_interface().one_time_status
     filter_status_list = create_list_of_dicts_for_filter_types(filter_status_dict)
-    filter_type = request.POST.get('filter_type')
-    if filter_type == None or filter_type == '':
-        filter_type = filter_status_dict['s2']
+    
+    filter_type = request.GET.get('filter_by',filter_status_dict['s2'] )
     orders = Orders_interface().get_orders_by_business_id_and_status(business_id, filter_type)
     order_status_list = {}
     for order in  reversed(orders):
@@ -33,11 +32,12 @@ def order_management(request):
         'filter_status_list':filter_status_list,
         'filter_type':filter_status_dict['s2'],
         'page':'order',
+        'Active':filter_status_dict['s2'],
+        'New':filter_status_dict['s1'],
+        'Rejected':filter_status_dict['s3'],
+        'Delivered':filter_status_dict['s4'],
+        'filter_type':filter_type ,
     }
-    if request.method == 'POST':
-        context.update({
-            'filter_type':filter_type,
-        })
     return render(request,'./business/manage_orders.html',context)
 
 def create_list_of_dicts_for_filter_types(filter_status_dict):

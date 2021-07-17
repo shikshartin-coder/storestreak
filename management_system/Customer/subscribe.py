@@ -42,7 +42,7 @@ def fetch_subscribed_businesses_list(request):
         'subscribed_list':result_list,
         'total_count':len(result_list)
     }
-    return render(request, './customer/sb.html',context)
+    return render(request, './customer/subscribed_businesses.html',context)
 
 def generate_list_of_businesses_subscribed(business_objects_list, subscription_objects_list_for_customer):
     print(business_objects_list)

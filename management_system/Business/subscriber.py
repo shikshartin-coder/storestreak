@@ -11,7 +11,7 @@ def fetch_subscribers(request):
         'subscribers_list':result_list,
         'total_count':len(result_list)
     }
-    return render(request, './business/ss.html',context)
+    return render(request, './business/subscribers.html',context)
 
 def generate_list_of_customer_subscribers(customer_objects_list, subscription_objects_list_for_business):
     print(customer_objects_list)

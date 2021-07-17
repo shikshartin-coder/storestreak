@@ -87,6 +87,8 @@ def change_password(request, message = None):
     user = request.user
     username = user.username
     user_type = config_user.get_user_type(username)
+    if user_type == None:
+        return not_found_view(request)
     path_to_user_base = "./"+user_type+"/base.html"
     print(path_to_user_base)
     context = {
