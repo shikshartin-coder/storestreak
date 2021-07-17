@@ -32,6 +32,7 @@ def order_management(request):
         'search_page':'orders',
         'filter_status_list':filter_status_list,
         'filter_type':filter_status_dict['s2'],
+        'page':'order',
     }
     if request.method == 'POST':
         context.update({
