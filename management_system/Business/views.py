@@ -13,6 +13,8 @@ from django.http import JsonResponse
 from landing_website.mobile_verfication import mobile_verification, otp_submission
 from . import subscriber
 from . import report_helper
+from landing_website.views import not_found_view
+from landing_website.constants import BUSINESS, CUSTOMER
 
 # Create your views here.
 
@@ -119,6 +121,10 @@ def business_signup(request):
 
 @login_required(login_url=config_account.login_url)
 def inventory_view(request, part=None):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
+
     page = 'inventory'
     category_list = Category_interface().get_category(request.user.id)
 
@@ -183,52 +189,78 @@ def inventory_view(request, part=None):
 
 @login_required(login_url=config_account.login_url)
 def edit_category(request, category_id):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
+
     return inventory.category_edit(request, category_id)
 
 
 @login_required(login_url=config_account.login_url)
 def inventory_edit(request, product_id):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     page = 'inventory'
     return inventory.edit_product(request, product_id, page)
 
 
 @login_required(login_url=config_account.login_url)
 def edit_product_type(request, product_type_id):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return inventory.inventory_edit_product_type(request, product_type_id)
 
 
 @login_required(login_url=config_account.login_url)
 def manage_orders(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return manage_order.order_management(request)
-
-
-@login_required(login_url=config_account.login_url)
-def subscribers(request):
-    return None
 
 @login_required(login_url=config_account.login_url)
 def order_page(request, order_id):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return manage_order.view_order_page(request, order_id)
 
 
 @login_required(login_url=config_account.login_url)
 def profile_view(request, user_id):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return profile.Business_profile(request, user_id)
 
 @login_required(login_url=config_account.login_url)
 def settings_view(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return business_settings.settings(request)
 
 @login_required(login_url=config_account.login_url)
 def payment_settings(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return business_settings.paymentsettings(request)
 
 @login_required(login_url=config_account.login_url)
 def delivery_settings(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return business_settings.delivery_settings(request)
 
 @login_required(login_url=config_account.login_url)
 def subscribers(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER:
+        return not_found_view(request)
     return subscriber.fetch_subscribers(request)
 
 @login_required(login_url=config_account.login_url)
