@@ -12,6 +12,7 @@ from . import profile
 from django.http import JsonResponse
 from landing_website.mobile_verfication import mobile_verification, otp_submission
 from . import subscriber
+from . import report_helper
 
 # Create your views here.
 
@@ -229,3 +230,13 @@ def delivery_settings(request):
 @login_required(login_url=config_account.login_url)
 def subscribers(request):
     return subscriber.fetch_subscribers(request)
+
+@login_required(login_url=config_account.login_url)
+def report(request):
+    user_type = config_user.get_user_type(request.user.username)
+    if user_type == CUSTOMER or request.method == 'GET':
+        return not_found_view(request)
+
+    if request.method == 'POST':
+        return report_helper.generate_report(request)
+
