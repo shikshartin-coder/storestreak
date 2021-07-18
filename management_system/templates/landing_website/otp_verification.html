@@ -1,48 +1,215 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_auth.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
+<style>
+    .before_login_pc{
+        background-image: url("{% static './images/all_background.png' %}");
+    }
+    .before_login_pc_body_left {
+        background-image: url("{% static './images/bg_svg_img.png' %}");
+    }
+    #hidden_btn {
+        display: none;
+    }
+</style>
+
 <body>
+    <div class="before_login_pc">
+        <div class="before_login_pc_body">
+            <div class="before_login_pc_body_left">
 
-    <div class="customer-login otp_page">
-        <div class="customer_login_1">
-            <img src="{% static './images/1.png' %}">
-            <h2>Verification</h2>
-            <p>You will get an OTP via SMS</p>
-        </div>
-        <div class="otp_verification_1_2">
 
-        </div>
-        <div class="otp_verification_1_3">
-            {% if page == 'business' %}
-            <form action="{% url 'business-signup' %}" method="POST">
-                {% elif page == 'customer' %}
-                <form action="{% url 'customer-signup' %}" method="POST">
-                    {% elif page == 'forgot_password' %}
-                    <form action="{% url 'forgot-password' %}" method="POST">
+                <div class="before_login_pc_body_left_overlay_headtext">
+                    <h3>The easy way to shop !</h3>
+                </div>
+
+                <div class="before_login_pc_body_left_overlay_body">
+                    <div class="before_login_pc_body_left_overlay_bodyimage">
+                        <div class="before_login_pc_body_left_overlay_bodyimage_image">
+                            <img src="{% static './images/customerview.png' %}">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="before_login_pc_body_left_overlay_footertext">
+                    <p>Get all your products from your local stores</p>
+                    <p>All in the same Place</p>
+                </div>
+
+            </div>
+            <div class="before_login_pc_body_right">
+                <div class="before_login_pc_body_right_body">
+                    <div class="before_login_pc_body_right_box">
+
+                        <div class="before_login_pc_body_right_top">
+                            <div class="before_login_pc_body_right_box_header">
+                                <span class="before_login_pc_body_right_box_header_arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_up">
+                                <span class="before_login_pc_body_right_box_up_name">
+                                    <a href="">Apni dukan</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="before_login_pc_body_right_box_middle">
+                        {% if page == 'business' %}
+                        <form action="{% url 'business-signup' %}" method="POST" id="otp_form">
+                        {% elif page == 'customer' %}
+                        <form action="{% url 'customer-signup' %}" method="POST" id="otp_form">
+                        {% elif page == 'forgot_password' %}
+                        <form action="{% url 'forgot-password' %}" method="POST" id="otp_form">
                         {% elif page == 'inside' %}
-                        <form action="{% url 'inside_signup' %}" method="POST">
-                            {% endif %} {% csrf_token %}
-                            <input name="mobile_number" type="hidden" value="{{mobile_number}}" readonly>
-                            <input type="hidden" name="otp_id" value="{{otp_id}}">
-                            <input placeholder="OTP" class="username" name="otp"> {% if page == 'inside' %}
-                            <input type="hidden" name="business_key" value="{{business_key}}">
-                            <input type="hidden" name="product_key" value="{{product_key}}">
-                            <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
-                            <button type="submit" name="btn" value="otp_submit" class="submit_button otp_submit">Submit OTP</button>
-                            <p class="resend_p">Didnt Get The OTP Yet ? <button class="resend" type="submit" name="btn" value="otp_resend" id="otp_resend_button">Resend OTP</button></p>
+                        <form action="{% url 'inside_signup' %}" method="POST" id="otp_form">
+                        {% endif %}
+                        {% csrf_token %}                            
+                        <div class="before_login_pc_body_right_box_middle_text">
+                                <h3>Welcome!</h3>
+                                <p class="pblue">Just a few steps to create your account. </p>
+                                <p class="pgray" style="color:#9999b1;font-size: 0.8rem;">Please enter the one time
+                                    password send to your phone number for
+                                    verification</p>
+
+                        </div>
+                        <div class="before_login_pc_body_right_password_box_middle_form">
+                            <div class="otp_box_middle_form">
+                                <div class="digit-group" data-group-name="digits" data-autosubmit="false"
+                                    autocomplete="off">
+                                    <input type="number" maxlength="1" id="digit-1" name="digit-1"
+                                        data-next="digit-2" autofocus class="otp_value" required/>
+                                    <input type="number" maxlength="1" id="digit-2" name="digit-2"
+                                        data-next="digit-3" data-previous="digit-1" class="otp_value" required />
+                                    <input type="number" maxlength="1" id="digit-3" name="digit-3"
+                                        data-next="digit-4" data-previous="digit-2" class="otp_value" required />
+                                    <input type="number" maxlength="1" id="digit-4" name="digit-4"
+                                        data-next="digit-5" data-previous="digit-3" class="otp_value" required />
+                                    <input type="number" maxlength="1" id="digit-5" name="digit-5"
+                                        data-next="digit-6" data-previous="digit-4" class="otp_value" required />
+                                    <input type="number" maxlength="1" id="digit-6" name="digit-6"
+                                        data-previous="digit-5" class="otp_value" required />
+                                </div>
+                            </div>
+                        </div>
+                            <div class="before_login_pc_body_right_box_middle_form_link">
+                                <div class="link">
+                                    <a href=""><span>Forgot Password?</span></a>
+                                </div>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_middle_buttons">
+                                <input name="mobile_number" type="hidden" value="{{mobile_number}}" readonly>
+                                <input type="hidden" name="otp_id" value="{{otp_id}}">
+                                <input type="hidden" name="otp" id="otp_verify">
+                                {% if page == 'inside' %}
+                                <input type="hidden" name="business_key" value="{{business_key}}">
+                                <input type="hidden" name="product_key" value="{{product_key}}">
+                                <input type="hidden" name="quantity" value="{{quantity}}">
+                                <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> 
+                                {% endif %} 
+                                <button type="button" onclick="create_otp_value('otp_value', 'otp_verify', 'hidden_btn')">Verify OTP</button>
+                                <button type="submit" name="btn" id="hidden_btn" value="otp_submit"></button>
+                            </div>
+                        
                         </form>
+
+                            {% if page == 'business' %}
+                            <form class="before_login_pc_body_right_box_middle_account" action="{% url 'business-signup' %}" method="POST">
+                            {% elif page == 'customer' %}
+                            <form class="before_login_pc_body_right_box_middle_account" action="{% url 'customer-signup' %}" method="POST">
+                            {% elif page == 'forgot_password' %}
+                            <form class="before_login_pc_body_right_box_middle_account" action="{% url 'forgot-password' %}" method="POST">
+                            {% elif page == 'inside' %}
+                            <form class="before_login_pc_body_right_box_middle_account" action="{% url 'inside_signup' %}" method="POST">
+                            {% endif %}
+                            {% csrf_token %}
+                                <span class="link_text">Didn't Get The OTP Yet ?</span>
+                                <input name="mobile_number" type="hidden" value="{{mobile_number}}" readonly>
+                                <span class="link_goto"><button type="submit" name="btn" value="otp_resend">Resend OTP</button></span>
+                            </form>
+                        </div>
+
+                        <div class="before_login_pc_body_right_box_base">
+                            <span class="before_login_pc_body_right_box_base_text">
+                                @Apni Dukan 2021. All Right Reserved
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script type="text/javascript">
+        $('.digit-group').find('input').each(function () {
+            $(this).attr('maxlength', 1);
+            $(this).on('keyup', function (e) {
+                var parent = $($(this).parent());
+
+                if (e.keyCode === 8 || e.keyCode === 37) {
+                    var prev = parent.find('input#' + $(this).data('previous'));
+
+                    if (prev.length) {
+                        $(prev).select();
+                    }
+                } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+                    var next = parent.find('input#' + $(this).data('next'));
+
+                    if (next.length) {
+                        $(next).select();
+                    } else {
+                        if (parent.data('autosubmit')) {
+                            parent.submit();
+                        }
+                    }
+                }
+            });
+        });
+
+        function create_otp_value(className, otp_verify_id, button_id) {
+            let otp_digits = document.getElementsByClassName(className);
+            let otp_formed = "";
+            for(otp_digit of otp_digits) {
+                if(otp_digit != "") 
+                    otp_formed = otp_formed + otp_digit.value;
+            }
+            if(otp_formed.length == 6) {
+                document.getElementById(otp_verify_id).value = otp_formed;
+                document.getElementById(button_id).click();
+            }
+        }
+
+    </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

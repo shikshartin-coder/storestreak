@@ -1,56 +1,168 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_auth.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+        <style>
+            .before_login_pc{
+                background-image: url("{% static './images/all_background.png' %}");
+            }
+            .before_login_pc_body_left {
+                background-image: url("{% static './images/bg_svg_img.png' %}");
+            }
+        </style>
 </head>
 
+
 <body>
+    <div class="before_login_pc" >
+        <div class="before_login_pc_body">
+            <div class="before_login_pc_body_left">
 
-    <div class="customer-login verification">
-        <div class="customer_login_1 verification_head">
-            <img src="{% static './images/1.png' %}">
-            <h2>Verification</h2>
-            <p>We Will Send a <span>One Time Password</span> on your phone number </p>
 
-            <div class="error">
-                {% if error != None %}
-                <p>{{error}}</p>
-                {% endif %} {% if error == "Mobile number already exist" %} {% if user_type == "customer" %}
-                <p>Please proceed to <a href="{% url 'customer-login' %}">login</a></p>
-                {% else %}
-                <p></p>
-                {% endif %} {% endif %}
+                <div class="before_login_pc_body_left_overlay_headtext">
+                    <h3>The easy way to shop !</h3>
+                </div>
+
+                <div class="before_login_pc_body_left_overlay_body">
+                    <div class="before_login_pc_body_left_overlay_bodyimage">
+                        <div class="before_login_pc_body_left_overlay_bodyimage_image">
+                            <img src="{% static './images/customerview.png' %}">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="before_login_pc_body_left_overlay_footertext">
+                    <p>Get all your products from your local stores</p>
+                    <p>All in the same Place</p>
+                </div>
+
             </div>
+            <div class="before_login_pc_body_right">
+                <div class="before_login_pc_body_right_body">
+                    <div class="before_login_pc_body_right_box">
 
-        </div>
-        <div class="customer_login_2">
-            {% if page == 'business' %}
-            <form action="{% url 'business-signup' %}" method="POST">
-                {% elif page == 'customer' %}
-                <form action="{% url 'customer-signup' %}" method="POST">
-                    {% elif page == 'forgot_password' %}
-                    <form action="{% url 'forgot-password' %}" method="POST">
+                        <div class="before_login_pc_body_right_top">
+                            <div class="before_login_pc_body_right_box_header">
+                                <span class="before_login_pc_body_right_box_header_arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_up">
+                                <span class="before_login_pc_body_right_box_up_name">
+                                    <a href="">Apni dukan</a>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        {% if page == 'business' %}
+                        <form class="before_login_pc_body_right_box_middle" action="{% url 'business-signup' %}" method="POST">
+                        {% elif page == 'customer' %}
+                        <form class="before_login_pc_body_right_box_middle" action="{% url 'customer-signup' %}" method="POST">
+                        {% elif page == 'forgot_password' %}
+                        <form class="before_login_pc_body_right_box_middle" action="{% url 'forgot-password' %}" method="POST">
                         {% elif page == 'inside' %}
-                        <form action="{% url 'inside_signup' %}" method="POST">
-                            {% endif %} {% csrf_token %}
-                            <input type="number" class="username" placeholder="Mobile Number." name="mobile_number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                            <input type="hidden" name="page" value="{{page}}"> {% if page == 'inside' %}
-                            <input type="hidden" name="business_key" value="{{business_key}}">
-                            <input type="hidden" name="product_key" value="{{product_key}}">
-                            <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> {% endif %}
-                            <button type="submit" name="btn" value="mobile_number_submit" class="submit_button ver_btn">Send OTP</button>
+                        <form class="before_login_pc_body_right_box_middle" action="{% url 'inside_signup' %}" method="POST">
+                        {% endif %} 
+
+                        {% csrf_token %}
+                            <div class="before_login_pc_body_right_box_middle_text">
+                                <h3>Welcome!</h3>
+                                <p class="pblue">Just a few steps to create your acount!</p>
+                                <p class="pgrey" style="color:#9999b1;font-size: 0.8rem;">We will send a one time
+                                    password to your Phone number for verification.
+                                </p>
+
+                            </div>
+
+                            <div class="error">
+                                {% if error != None %}
+                                <p>{{error}}</p>
+                                {% endif %} {% if error == "Mobile number already exist" %} {% if user_type == "customer" %}
+                                <p>Please proceed to <a href="{% url 'customer-login' %}">login</a></p>
+                                {% else %}
+                                <p></p>
+                                {% endif %} {% endif %}
+                            </div>
+                            
+                            <div class="before_login_pc_body_right_password_box_middle_form">
+
+                                <div class="before_login_pc_body_right_business_id_box_middle_form">
+
+                                    <div class="before_login_pc_body_right_business_id_box_middle_form_input">
+                                        <span class="input_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z">
+                                                </path>
+                                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="input_field">
+                                            <input type="number" name="mobile_number" placeholder="Phone Number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                        </span>
+                                        <input type="hidden" name="page" value="{{page}}">
+                                        {% if page == 'inside' %}
+                                        <input type="hidden" name="business_key" value="{{business_key}}">
+                                        <input type="hidden" name="product_key" value="{{product_key}}">
+                                        <input type="hidden" name="quantity" value="{{quantity}}">
+                                        <input type="hidden" name="hidden_btn" value="{{hidden_val}}"> 
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="before_login_pc_body_right_box_middle_buttons">
+                                <button type="submit" name="btn" value="mobile_number_submit">Send OTP</button>
+                            </div>
+
+                        
+
                         </form>
+
+                        <div class="before_login_pc_body_right_box_base">
+                            <span class="before_login_pc_body_right_box_base_text">
+                                @Apni Dukan 2021. All Right Reserved
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
