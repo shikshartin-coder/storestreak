@@ -2,51 +2,56 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/homepage.css' %}">
+    <style type="text/css">
+        .homepage_first_mobile{
+            background-image: url(" {% static './images/heromobilebackground.png' %}");
+        }
+    </style>
 </head>
 
 <body>
     <div class="homepage">
 
-        <div class="homepage_first">
+           <div class="homepage_first">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <!---------------FIRST SLIDE------------------->
                     <div class="carousel-item active ">
-                        <img src="{% static './images/shop2.png' %}" alt="...">
+                        <img src="{% static './images/carousel1backgroung.png' %}" alt="...">
                         <div class="carousel-caption1 ">
-                            <h1>Order From Your</h1>
-                            <h1>Favourite Local</h1>
-                            <h1>Store Online.</h1>
-                            <button class="Find a Store">Find a Store</button>
+                            <h3>Order From Your Favourite Local Store Online.</h3>
+                            <p>Managing and ordering your daily needs is easy & seamless on Our App.</p>
+                            <button class="Find a Store">Find Stores</button>
                         </div>
+                         <!------------overlay image------------------>
                         <div class="carousel-caption1_img">
-                            <img src="{% static './images/heroslide1.png' %}">
+                            <img src="{% static './images/carousel1mobile.png' %}">
                         </div>
                     </div>
                     <!---------------SECOND SLIDE------------------->
                     <div class="carousel-item ">
-                        <img src="{% static './images/shop2.png' %}" alt="...">
+                        <img src="{% static './images/carousel2backgroung.png' %}" alt="...">
                         <div class="carousel-caption2">
-                            <h1>Create Your E-Store</h1>
-                            <h1>In 15 mins</h1>
+                            <h3>Create Your E-Store In 15 mins</h3>
+                            <p>Creating an online store has never been this easy.It just takes few steps ApniDukan is the easiest way to start, run and grow your online business.</p>
                             <a href="{% url 'contact' %}"> <button class="Get Started">Get Started</button></a>
                         </div>
+                         <!------------overlay image------------------>
                         <div class="carousel-caption2_img">
-                            <img src="{% static './images/heroslide2.png' %}">
+                            <img src="{% static './images/carousel2mobile.png' %}">
                         </div>
                     </div>
                     <!---------------THIRD SLIDE------------------->
                     <div class="carousel-item">
-                        <img src="{% static './images/shop3.jpg' %}" alt="...">
+                        <img src="{% static './images/carousel3background.png' %}" alt="...">
                         <div class="carousel-caption3">
-                            <h1>In This Pandemic</h1>
-                            <h1>Be At home</h1>
-                            <h1>Sell And Purchase Products</h1>
-                            <h1> Online</h1>
-                            <button class="Read More">Read More</button>
+                            <h3>Shopping experience made more easier</h3>
+                            <p>Your customers can order now 24x7 directly on your Online store & receive order updates & digital receipts on Our App.</p>
+                            <button class="Read More">Find Stores</button>
                         </div>
+                        <!------------overlay image------------------>
                         <div class="carousel-caption3_img">
-                            <img src="{% static './images/heroslide3.png' %}">
+                            <img src="{% static './images/carousel3mobile.png' %}">
                         </div>
                     </div>
                 </div>
@@ -58,6 +63,18 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+            </div>
+        </div>
+        <div class="homepage_first_mobile_full">
+            <div class="homepage_first_mobile" >
+                <div class="homepage_first_mobile_background" >
+                        <h3>Create Your E-Store In 15 mins</h3>
+                        <p>Creating an online store has never been this easy.It just takes few steps ApniDukan is the easiest way to start, run and grow your online business.</p>
+                        <a href="{% url 'contact' %}"  class="Get Started">Let's Get Started></a>
+                </div>
+                <div class="homepage_first_mobile_img">
+                    <img src="{% static './images/carousel2mobile.png' %}">
+                </div>            
             </div>
         </div>
         <!-------------------------------Second part--------------------------------------->
@@ -77,8 +94,8 @@
                         <p>Subscribe to Your Favourite Local store.</p>
                         <h3>Add Products in your cart.</h3>
                         <p>Add Products in store Specific Cart.</p>
-                        <h3>Recieve and manage Orders.</h3>
-                        <p>Manage and Check Your Order History.</p>
+                        <h3>Pay via various modes of payment .</h3>
+                        <p>Pay securely online and stay Safe.</p>
                         <a href=""><button class="Find a Store">Find a Store</button></a>
                     </div>
                 </div>
@@ -94,7 +111,7 @@
             <div class="homepage_fifth_tools">
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/multiple_estore.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>Multiple Local Stores</h3>
@@ -103,7 +120,7 @@
                 </div>
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/sub.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>Subscribe And Buy</h3>
@@ -112,7 +129,7 @@
                 </div>
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/deals.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>Great Deals</h3>
@@ -132,11 +149,11 @@
             <div class="homepage_third_facts">
                 <div class="facts_card">
                     <div class="facts_img">
-                        <img src="{% static './images/fact1.png' %}">
+                        <img src="{% static './images/multiple_estore.png' %}">
                     </div>
                     <div class="facts_text">
-                        <h3>1.2+lakh estore</h3>
-                        <p>With more than 1lakh stores trust us and have created their stores online.They Believe in STAY HOME STAY SAFE</p>
+                        <h3>Multiple estore</h3>
+                        <p>With multiple stores trusting us and have created their stores online.</p>
                     </div>
                 </div>
                 <div class="facts_card">
@@ -145,16 +162,16 @@
                     </div>
                     <div class="facts_text">
                         <h3>Vocal For Local</h3>
-                        <p>We believe Local Shops can provide better rates than whats present online.It also provides the best customer support to your needs</p>
+                        <p>We believe in Vocal For Local providing the best customer support to your needs.</p>
                     </div>
                 </div>
                 <div class="facts_card">
                     <div class="facts_img">
-                        <img src="{% static './images/fact1.png' %}">
+                        <img src="{% static './images/atbharat.png' %}">
                     </div>
                     <div class="facts_text">
                         <h3>Atma Nirbhar Bharat</h3>
-                        <p>We nurture rural entrepreneurs who inturn create local level jobs. Mission is to create 2M jobs in Bharat. The real Aatma Nirbharta. </p>
+                        <p>We nurture rural entrepreneurs who inturn create there business online. The real Aatma Nirbharta. </p>
                     </div>
                 </div>
             </div>
@@ -172,12 +189,12 @@
                         <div class="homepage_services_heading">
                             <h1>Create Your E-store</h1>
                         </div>
-                        <h3>Create your online business profile.</h3>
-                        <p>Firstly, you need to set your business name, business category and you will get a custom link of your store in less than 10 seconds.</p>
-                        <h3>Start listing your products.</h3>
-                        <p>Create different catalogues and add products, set prices, delivery fees and allow your customers to check everything in simple way.</p>
-                        <h3>Start selling on social media.</h3>
-                        <p>Share your store link with your customers on WhatsApp, Facebook, Twitter, Instagram and start accepting orders from them online.</p>
+                        <h3>Fill out the Contact Us Form.</h3>
+                        <p>Please fill out the contact us form for your e-store.</p>
+                        <h3>Contact with Customer executive.</h3>
+                        <p>Our customer executive will reach out to you for a Demo.</p>
+                        <h3>Get your E-store within 24hrs.</h3>
+                        <p>Once you confirm us you will get your estore within 24hrs.</p>
                         <a href="{% url 'contact' %}"><button class="Get Started">Create Your E-Store Now</button></a>
                     </div>
                 </div>
@@ -195,7 +212,7 @@
             <div class="homepage_fifth_tools">
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/order.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>Simple order management</h3>
@@ -204,7 +221,7 @@
                 </div>
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/seo.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>SEO Ready</h3>
@@ -213,11 +230,38 @@
                 </div>
                 <div class="tools_card">
                     <div class="tools_img">
-                        <img src="{% static './images/fact2.png' %}">
+                        <img src="{% static './images/call.png' %}">
                     </div>
                     <div class="tools_text">
                         <h3>Customer call support</h3>
                         <p>With our 24x7 customer support, we never miss a chance to hear your queries.</p>
+                    </div>
+                </div>
+                 <div class="tools_card">
+                    <div class="tools_img">
+                        <img src="{% static './images/delivery.png' %}">
+                    </div>
+                    <div class="tools_text">
+                        <h3>Deliver Charges</h3>
+                        <p>Charge a flat ,free or dynamic delivery fee on orders amount.</p>
+                    </div>
+                </div>
+                 <div class="tools_card">
+                    <div class="tools_img">
+                        <img src="{% static './images/list.png' %}">
+                    </div>
+                    <div class="tools_text">
+                        <h3>Customer List</h3>
+                        <p>With your huge customer list,showcase your customer base to the growing world.</p>
+                    </div>
+                </div>
+                 <div class="tools_card">
+                    <div class="tools_img">
+                        <img src="{% static './images/online.png' %}">
+                    </div>
+                    <div class="tools_text">
+                        <h3>Online Payments</h3>
+                        <p>Accept payments via debit/credit card, UPI, wallet, etc. through online payment.</p>
                     </div>
                 </div>
 
