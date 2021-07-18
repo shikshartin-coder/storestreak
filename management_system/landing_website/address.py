@@ -3,6 +3,8 @@ from .data_interface import AddressInterface, UserInterface
 from . import config_user
 from .constants import BUSINESS,CUSTOMER,states
 from . import constants
+from geocode import reverse_coordinates
+
 def add_address(request, id):
     username = UserInterface().get_username_for_id(request.user.id)
     user_type = config_user.get_user_type(username)
@@ -21,7 +23,6 @@ def add_address(request, id):
         'address_type_list':address_type_list,
         'state_list':state_list,
         'user_type': user_type,
-        'state_list':state_list,
         'path_to_user_base' : path_to_user_base,
     }
     if id != 'new':
@@ -69,3 +70,10 @@ def address_list(request):
         'address_list':address_object_list,
     }
     return render(request, './landing_website/address/address_list.html', context)
+
+def fetch_formatted_address(request):
+    if request.method == 'POST':
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        return reverse_coordinates.reverse_coordinates_to_address(latitude, longitude)
+
