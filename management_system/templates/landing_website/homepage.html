@@ -2,51 +2,56 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static './css/landing_website/homepage.css' %}">
+    <style type="text/css">
+        .homepage_first_mobile{
+            background-image: url(" {% static './images/heromobilebackground.png' %}");
+        }
+    </style>
 </head>
 
 <body>
     <div class="homepage">
 
-        <div class="homepage_first">
+           <div class="homepage_first">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <!---------------FIRST SLIDE------------------->
                     <div class="carousel-item active ">
-                        <img src="{% static './images/shop2.png' %}" alt="...">
+                        <img src="{% static './images/carousel1backgroung.png' %}" alt="...">
                         <div class="carousel-caption1 ">
-                            <h1>Order From Your</h1>
-                            <h1>Favourite Local</h1>
-                            <h1>Store Online.</h1>
-                            <button class="Find a Store">Find a Store</button>
+                            <h3>Order From Your Favourite Local Store Online.</h3>
+                            <p>Managing and ordering your daily needs is easy & seamless on Our App.</p>
+                            <button class="Find a Store">Find Stores</button>
                         </div>
+                         <!------------overlay image------------------>
                         <div class="carousel-caption1_img">
-                            <img src="{% static './images/heroslide1.png' %}">
+                            <img src="{% static './images/carousel1mobile.png' %}">
                         </div>
                     </div>
                     <!---------------SECOND SLIDE------------------->
                     <div class="carousel-item ">
-                        <img src="{% static './images/shop2.png' %}" alt="...">
+                        <img src="{% static './images/carousel2backgroung.png' %}" alt="...">
                         <div class="carousel-caption2">
-                            <h1>Create Your E-Store</h1>
-                            <h1>In 15 mins</h1>
+                            <h3>Create Your E-Store In 15 mins</h3>
+                            <p>Creating an online store has never been this easy.It just takes few steps ApniDukan is the easiest way to start, run and grow your online business.</p>
                             <a href="{% url 'contact' %}"> <button class="Get Started">Get Started</button></a>
                         </div>
+                         <!------------overlay image------------------>
                         <div class="carousel-caption2_img">
-                            <img src="{% static './images/heroslide2.png' %}">
+                            <img src="{% static './images/carousel2mobile.png' %}">
                         </div>
                     </div>
                     <!---------------THIRD SLIDE------------------->
                     <div class="carousel-item">
-                        <img src="{% static './images/shop3.jpg' %}" alt="...">
+                        <img src="{% static './images/carousel3background.png' %}" alt="...">
                         <div class="carousel-caption3">
-                            <h1>In This Pandemic</h1>
-                            <h1>Be At home</h1>
-                            <h1>Sell And Purchase Products</h1>
-                            <h1> Online</h1>
-                            <button class="Read More">Read More</button>
+                            <h3>Shopping experience made more easier</h3>
+                            <p>Your customers can order now 24x7 directly on your Online store & receive order updates & digital receipts on Our App.</p>
+                            <button class="Read More">Find Stores</button>
                         </div>
+                        <!------------overlay image------------------>
                         <div class="carousel-caption3_img">
-                            <img src="{% static './images/heroslide3.png' %}">
+                            <img src="{% static './images/carousel3mobile.png' %}">
                         </div>
                     </div>
                 </div>
@@ -58,6 +63,18 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+            </div>
+        </div>
+        <div class="homepage_first_mobile_full">
+            <div class="homepage_first_mobile" >
+                <div class="homepage_first_mobile_background" >
+                        <h3>Create Your E-Store In 15 mins</h3>
+                        <p>Creating an online store has never been this easy.It just takes few steps ApniDukan is the easiest way to start, run and grow your online business.</p>
+                        <a href="{% url 'contact' %}"  class="Get Started">Let's Get Started></a>
+                </div>
+                <div class="homepage_first_mobile_img">
+                    <img src="{% static './images/carousel2mobile.png' %}">
+                </div>            
             </div>
         </div>
         <!-------------------------------Second part--------------------------------------->
