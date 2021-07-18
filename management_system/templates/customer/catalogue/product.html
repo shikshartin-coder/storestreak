@@ -66,7 +66,7 @@
                 <div class="productpage_text_buttons">
                     <input type="hidden" name="buy_mode" value="normal_buy"> {% if request.user.id == None %}
                     <button name="btn" type="button" value="buy" class="buynow" onclick="show('non_user_modal');set_button_val('submit_btn','buy_now')">Buy Now</button>
-                    <button type="button" value="buy" class="add_to_cart_product" onclick="show('non_user_modal');set_button_val('submit_btn','cart')">Add To Cart</button> {% else %}
+                    <button type="button" value="buy" class="add_to_cart_product" onclick="show('non_user_modal');set_button_val('submit_btn','cart_product_page');set_val_using_id('quantity_product', 'quantity')">Add To Cart</button> {% else %}
                     <input type="hidden" name="business_key" value="{{business_obj.business_key}}">
                     <input type="hidden" name="product_type_id" value="{{product_type.id}}">
                     <button name="btn" type="submit" value="buy" class="buynow">Buy Now</button>
@@ -111,6 +111,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="business_key" value="{{business_key}}">
                         <input type="hidden" name="product_key" value="{{product_type.product_type_key}}">
+                        <input type="hidden" name="quantity" id="quantity_product">
                         <input type="text" placeholder="Mobile Number" name="mobile_number">
                         <button type="submit" name="btn" id="submit_btn">Verify</button>
                     </form>
@@ -143,6 +144,9 @@
             document.getElementById(id).submit();
         }
 
+        function set_val_using_id(id_to_set, id_to_fetch) {
+            document.getElementById(id_to_set).value = document.getElementById(id_to_fetch).value;
+        }        
 
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
