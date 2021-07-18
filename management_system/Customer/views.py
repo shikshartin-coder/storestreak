@@ -142,7 +142,7 @@ def inside_signup(request):
         business_key = request.POST.get('business_key')
         product_key = request.POST.get('product_key')
         hidden_val = request.POST.get('hidden_btn')
-        quantity = request.POST.get('quantity', 1)
+        quantity = request.POST.get('quantity', 0)
 
         context = {
             'error': None,
