@@ -72,6 +72,7 @@ def customer_signup(request):
     context = {
         'page': 'customer'
     }
+    error = None
     if(request.method == "POST"):
         btn = request.POST.get('btn')
         mobile_number = request.POST.get('mobile_number')
