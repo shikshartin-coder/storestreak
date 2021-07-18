@@ -7,34 +7,170 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static './css/customer/auth/customer_login.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static './css/business/auth/business_auth.css' %}">
     <title>LOGIN</title>
+    <style>
+        .before_login_pc {
+            background-image: url("{% static './images/auth/all_background.png' %}");
+        }
+        
+        .before_login_pc_body_left {
+            background-image: url("{% static './images/auth/bg_svg_img.png' %}");
+        }
+    </style>
 </head>
 
 <body>
-    <div class="customer-login">
-        <div class="customer_login_1">
-            <img src="{% static './images/1.png' %}">
-            <h2>LOG IN</h2>
-            <p> </p>
-        </div>
-        <div class="customer_login_2">
-            <form action="{% url 'business-login' %}" method="POST">
-                {% csrf_token %} {% if error != None %}
-                <p>{{error}}</p>
-                {% endif %}
-                <input required type="number" name="username" class="username" placeholder="Phone Number" value="{{username}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-                <input required type="password" name="password" class="password" placeholder="Password">
-                <div class="customer_login_3">
-                    <span><a href="{% url 'forgot-password' %}">Forgot Password ?</a> </span>
+
+    <div class="before_login_pc">
+        <div class="before_login_pc_body">
+            <div class="before_login_pc_body_left">
+                <div class="before_login_pc_body_left_overlay_headtext">
+                    <h3>Create Your E-store in 3 Steps !</h3>
+                </div>
+                <div class="before_login_pc_body_left_overlay_body">
+                    <div class="before_login_pc_body_left_overlay_bodypoints">
+                        <div class="before_login_pc_body_left_overlay_bodypoints_center">
+                            <!--------------------EACH POINT------------------------------------>
+                            <div class="before_login_pc_body_left_overlay_bodypoints_each">
+                                <div class="before_login_pc_body_left_overlay_bodypoints_each_img">
+                                    <img src="{% static './images/auth/list.png' %}">
+                                </div>
+                                <div class="before_login_pc_body_left_overlay_bodypoints_text">
+                                    <p>Fill out the contact form.</p>
+                                </div>
+                            </div>
+                            <!--------------------EACH POINT------------------------------------>
+                            <div class="before_login_pc_body_left_overlay_bodypoints_each">
+                                <div class="before_login_pc_body_left_overlay_bodypoints_each_img">
+                                    <img src="{% static './images/auth/person.png' %}">
+                                </div>
+                                <div class="before_login_pc_body_left_overlay_bodypoints_text">
+                                    <p>Contact with Customer Executive</p>
+                                </div>
+                            </div>
+                            <!--------------------EACH POINT------------------------------------>
+                            <div class="before_login_pc_body_left_overlay_bodypoints_each">
+                                <div class="before_login_pc_body_left_overlay_bodypoints_each_img">
+                                    <img src="{% static './images/auth/success.png' %}">
+                                </div>
+                                <div class="before_login_pc_body_left_overlay_bodypoints_text">
+                                    <p>Get Your own E-store!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="before_login_pc_body_left_overlay_bodyimage">
+                        <div class="before_login_pc_body_left_overlay_bodyimage_image">
+                            <img src="{% static './images/auth/businessView.png' %}">
+                        </div>
+                    </div>
                 </div>
 
-                <button type="submit" name="btn" value="login_submit" class="submit_button">SUBMIT</button>
-            </form>
-            <p class="or">OR</p>
-            <div class="customer_login_4">
-                <a href="{% url 'contact' %}"> <button>SignUp</button></a>
+
+                <div class="before_login_pc_body_left_overlay_footertext">
+                    <p>Enjoy Your Seamless Process To Create Your E-store</p>
+                    <p>All Your Store Management At One Place</p>
+                </div>
+
+            </div>
+            <div class="before_login_pc_body_right">
+
+                <!--- endform-->
+                <form action="{% url 'business-login' %}" method="POST" class="before_login_pc_body_right_body">
+                    {% csrf_token %} {% if error != None %}
+                    <p>{{error}}</p>
+                    {% endif %}
+                    <div class="before_login_pc_body_right_box">
+
+                        <div class="before_login_pc_body_right_top">
+                            <div class="before_login_pc_body_right_box_header">
+                                <span class="before_login_pc_body_right_box_header_arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_up">
+                                <span class="before_login_pc_body_right_box_up_name">
+                                    <a href="">Apni dukan</a>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="before_login_pc_body_right_box_middle">
+
+                            <div class="before_login_pc_body_right_box_middle_text">
+                                <h3>Hello Again !</h3>
+                                <p class="pblue">Let's enhance your business online with us!</p>
+
+                            </div>
+
+                            <div class="before_login_pc_body_right_business_id_box_middle_form">
+
+                                <div class="before_login_pc_body_right_business_id_box_middle_form_input">
+                                    <span class="input_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                        </svg>
+                                    </span>
+                                    <span class="input_field">
+                                        <input  required type="number" name="username" placeholder="Phone Number" value="{{username}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="before_login_pc_body_right_password_box_middle_form">
+
+                                <div class="before_login_pc_body_right_password_box_middle_form_input">
+                                    <span class="input_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path
+                                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                    </span>
+                                    <span class="input_field">
+                                        <input  required type="password" name="password" class="password" placeholder="Password">
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="before_login_pc_body_right_box_middle_form_link">
+                                <div class="link">
+                                    <a href="{% url 'forgot-password' %}"><span>Forgot Password?</span></a>
+                                </div>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_middle_buttons">
+                                <button type="submit" name="btn" value="login_submit" class="submit_button">Login</button>
+                            </div>
+
+                            <div class="before_login_pc_body_right_box_middle_account">
+                                <span class="link_text">Don't have an Account ?</span>
+                                <span class="link_goto"><a href="{% url 'contact' %}">Sign Up</a></span>
+                            </div>
+
+                        </div>
+
+                        <div class="before_login_pc_body_right_box_base">
+                            <span class="before_login_pc_body_right_box_base_text">
+                                @Apni Dukan 2021. All Right Reserved
+                            </span>
+                        </div>
+                    </div>
+                    <!--- endform-->
+                </form>
             </div>
         </div>
     </div>
