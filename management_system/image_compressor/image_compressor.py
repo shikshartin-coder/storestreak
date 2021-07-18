@@ -1,9 +1,9 @@
 import base64
 
-
-
 def compress(imagestr,filename):
     imgstring = imagestr.replace('data:image/jpeg;base64,','')
+    if(imgstring == ''):
+        return None
     try:
         imgdata = base64.b64decode(imgstring)
     except:
