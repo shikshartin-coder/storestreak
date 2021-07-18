@@ -10,51 +10,50 @@
 </head>
 
 <body>
-
+  
         <div class="new_address">
             <div class="new_address_heading">
                 <h3>Add New Address</h3>
             </div>
+            <input type="hidden" name="page_type" id="page_type" value="{{id}}">
             <form class="new_address_body" action="{% url 'add-address' id=id %}" method="POST">
-                {% csrf_token %}
-                <label>Name<span class="star"> *</span></label>
+                {% csrf_token %} 
+                <!--<button type="button" name="btn" value="fetch_location" onclick="fetch_coordinates();">Fetch current Location</button> -->
+                <label>Name<span class="star"> *</span></label> 
                 <input type="text" name="name" placeholder="name" value="{{address.name}}" required>
                 <label>Mobile Number<span class="star"> *</span></label>
                 <input type="number" required name="mobile" placeholder="mobile" value="{{address.mobile}}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                 <label>Pin Code<span class="star"> *</span></label>
-                <input required type="number" name="pincode" placeholder="pincode" value="{{address.pincode}}">
+                <input required type="number" id="pincode" name="pincode" placeholder="pincode" value="{{address.pincode}}">
                 <label>Building<span class="star"> *</span></label>
-                <input required type="text" name="building" placeholder="building" value="{{address.building}}">
+                <input required type="text"  id="building" name="building" placeholder="building" value="{{address.building}}">
                 <label>Street<span class="star"> *</span></label>
-                <input required type="text" name="street" placeholder="street" value="{{address.street}}">
+                <input required type="text" id="street" name="street" placeholder="street" value="{{address.street}}">
                 <label>Landmark</label>
                 <input required type="text" name="landmark" placeholder="landmark" value="{{address.landmark}}">
                 <label>City<span class="star"> *</span></label>
-                <input required type="text" name="city" placeholder="city" value="{{address.city}}">
-
+                <input required type="text" id="city"  name="city" placeholder="city" value="{{address.city}}">
                 <label>State<span class="star"> *</span></label>
-            <select name="state" class="selector" id="">
+                <select required id="state" name="state" value="{{address.state}}">
                     {% for state in state_list %}
-                <option value="{{state}}">{{state}}</option>
-                    {% endfor %}
-                    {% if id != 'new' %}
-                    <option selected value="{{address.state}}">{{address.state}}</option>
+                    {% if address.state == state %}
+                    <option value="{{state}}" selected="true">{{state}}</option>
+                    {% else %}
+                    <option value="{{state}}">{{state}}</option>
                     {% endif %}
+                    {% endfor %}
                 </select>
-
-
-            <label>Type<span class="star"> *</span></label>
-            <select name="address_type" id=""class="selector">
+                <label>Type<span class="star"> *</span></label>
+                <select required name="address_type" value="{{address.address_type}}">
                 {% for address_type in address_type_list %}
-                <option value="{{address_type}}">{{address_type}}</option>
+                    {% if address_type == address.address_type %}
+                    <option value="{{address_type}}" selected>{{address_type}}</option>
+                    {% else %}
+                    <option value="{{address_type}}">{{address_type}}</option>
+                    {% endif %}
                 {%  endfor %}
-                {% if id != 'new' %}
-                <option selected value="{{address.address_type}}">{{address.address_type}}</option>
-                {% endif %}
-            </select> {% if id == 'new' %}
-
-
-
+                </select>
+                {% if id == 'new' %}
                 <button type="submit" name="btn" value="new" id="submit_btn">New</button> {% else %}
                 <button type="submit" name="btn" value="edit" id="submit_btn">Edit</button> {% endif %}
             </form>
@@ -62,15 +61,93 @@
                 <button onclick="clickSubmitButton(event)">Add Address</button>
             </div>
         </div>
-
+   
 </body>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
+
+    window.onload = (event) => {
+        let page_type = document.getElementById('page_type').value;
+        if(page_type == 'new') {
+            fetch_coordinates();
+        }
+    }
+
     function clickSubmitButton(e) {
         present_container = e.currentTarget;
         parent_container = present_container.parentNode;
         let submit_btn = document.getElementById("submit_btn");
         submit_btn.click();
     }
+
+    function fetch_coordinates() {
+            var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+        };
+
+        function success(pos) {
+        var crd = pos.coords;
+
+        fetch_formatted_address_from_coordinates(`${crd.latitude}`, `${crd.longitude}`);
+        }
+
+        function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+    }
+
+    function fetch_formatted_address_from_coordinates(lat, long) {
+        $.post(
+            '/fetch-formatted-address', {
+               latitude:lat,
+               longitude:long,
+               csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            function(data) {
+                let results_set = data.results;
+                let i=0;
+                for(i=0;i<results_set.length;i++) {
+                    if(results_set[i].types[0] == 'street_address') {
+                        //console.log(results_set[i].types[0]);
+                        break;
+                    }
+                }
+                //console.log(results_set[i].address_components);
+                let street = "", city="", state="", country="", pincode="";
+                for(let j=0;j<results_set[i].address_components.length;j++) {
+                    if(results_set[i].address_components[j].types[0] == 'street_number') 
+                        street = results_set[i].address_components[j].long_name;
+
+                    if(results_set[i].address_components[j].types[0] == 'route')
+                        street = street +", "+ results_set[i].address_components[j].long_name;
+                    
+                    if(results_set[i].address_components[j].types[0] == 'locality')
+                        city = results_set[i].address_components[j].long_name;
+
+                    if(results_set[i].address_components[j].types[0] == 'administrative_area_level_1')
+                        state = results_set[i].address_components[j].long_name;
+
+                    if(results_set[i].address_components[j].types[0] == 'country')
+                        country = results_set[i].address_components[j].long_name;
+
+                    if(results_set[i].address_components[j].types[0] == 'postal_code')
+                        pincode = results_set[i].address_components[j].long_name;
+
+                }
+
+                document.getElementById('street').value = street;
+                document.getElementById('city').value = city;
+                document.getElementById('pincode').value = pincode;
+                document.getElementById('state').value = state;
+            }
+        );
+    }
+
 </script>
 
 </html>
